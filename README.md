@@ -1,1 +1,1 @@
-# goods-disply
+# goods-display
