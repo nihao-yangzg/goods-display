@@ -1,0 +1,180 @@
+<html>
+    <head>
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <script src="../js/jquery-zoom.min.js"></script>
+        <script src="../js/menu.js"></script>
+        <script src="../js/select2.min.js"></script>
+        <script src="../js/item.js"></script>
+        <link rel="stylesheet" href="../css/style.css" type="text/css">
+        <link rel="stylesheet" href="../css/item.css" type="text/css">
+        <link rel="stylesheet" href="../css/tablist.css" type="text/css">
+        <!-- <link rel="stylesheet" href="../css/font-awesome.min.css"> -->
+        <!-- <link rel="stylesheet" href="../css/select2.css" type="text/css">    -->
+    </head>
+    <body>
+            <div class="container">
+                <div class="content">
+                    <div class="purchase">
+                        <div class="images">
+                            <div class="imageview" id="img-detail">
+                                <span class='zoom' id="img-zoom">
+                                    <img src="../images/a.jpg" alt="">
+                                </span>
+                            </div>  
+                            <div class="imagelist">
+                                
+                                <ul id='imageul'>
+                                    <li class='gphoto active'><img src="../images/a.jpg" alt=""></li>
+                                    <li class='gphoto'><img src="../images/b.jpg" alt=""></li>
+                                    <li class='gphoto'><img src="../images/c.jpg" alt=""></li>
+                                    <li class='gphoto'><img src="../images/d.jpg" alt=""></li>
+                                    <li class='gphoto'><img src="../images/e.jpg" alt=""></li>
+                                </ul>
+                               
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail-info">
+                            
+                                <div class="title">
+                                    <h3>GUCCI T-SHIRTS MANY OPTIONS</h3>
+                                    <h3>$ 18.85</h3>
+                                </div>
+                                <div class="general">
+                                    <p>High quality product. Reliable seller!</p>
+                                    <p>100% cotton t-shirts</p>
+                                    <p>Scroll page down to find detailed pictures and links</p>
+                                    <p>If you find out that links are not working, click Request More button</p>
+                                </div>
+                                <div>
+                                    <button>Buy it</button>
+                                </div>
+
+                                
+                            </div>  
+                        </div>
+
+                    </div>
+                    <div class="description">
+                        <div class='tab-container'>
+                                <div class="tablist active" id='tab-1'>                                    
+                                    DESCRIPTION
+                                </div>
+                                <div class="tablist" id='tab-2'>INFORMATION</div>
+                                <div class="tablist" id='tab-3'>OTHER</div>
+                        </div>
+                        <div class="content-container">
+                            <div class="description-content">
+                                <h3>LV and GUCCI x Peppa T-SHIRT CODE Y49-Y52</h3>
+                                <h4> HOW TO BUY</h4>
+                                <ul>
+                                    <li>Click Buy on Aliexpress</li>
+                                    <li>Select any option to buy the product!</li>
+                                    <li>Leave message with product code as on picture and size after payment. For example: Y120-M.</li>
+                                    <li>DON’T write any information in order. DON’T contact seller on aliexpress. DON’T leave feedback after transaction completed.</li>
+                                    <li>If you find out that links are not working, click Request More button</li>
+                                </ul>
+                            </div>
+                            <div class="information-content hidden">
+                                <h3>ADDITIONAL INFORMATION</h3>
+                                <div class="center">
+                                <table class='table'>
+                                        <thead>
+                                            <tr>
+                                                <th>key</th>
+                                                <th>value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>product type</td>
+                                                <td>women's cloth</td>
+                                            </tr>
+                                            <tr>
+                                                <td>brand</td>
+                                                <td>GUCCI</td>
+                                            </tr>
+                                            <tr>
+                                                <td>seller code</td>
+                                                <td>nioewr</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                            </div>
+                            <div class="other-content hidden">
+                                <h3>other information</h3>
+                                <div>
+                                    <p>waiting...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </body>
+    <script>
+         $(function(){
+            $('.tablist').on('click', function(){
+                console.log('click');
+                $index = $(this).index();
+                $active = $(this).siblings('.active');
+                if (!$active) {
+                    return;
+                }
+                $active.removeClass('active');
+                $(this).addClass('active');
+                // var length = $(".content-container").children('div').length();
+                $(".content-container").children('div').each(function(index,dom) {
+                    console.log(dom);
+                    var $dom = $(dom);
+                    if ($dom.hasClass('hidden')) {
+                        if (index === $index) {
+                            $dom.removeClass('hidden');
+                        }
+                    } else {
+                        if (index !== $index) {
+                            $dom.addClass('hidden');
+                        }
+                    }
+                })
+            })
+            // $('.gphoto').on('click', function(event) {
+            //     var $this = $(this);
+            //     var imgUrl = $this.children('img').attr('src');
+            //     console.log(imgUrl);
+            //     $siblings = $this.siblings('.active');
+            //     if ($siblings) {
+            //         $siblings.removeClass('active');
+            //     }
+            //     $this.addClass('active');
+            //     $('#img-detail').css({
+            //         'background-image': 'url("' + imgUrl + '")'
+            //     })
+            // })
+            
+            $('.gphoto').on('mouseover', function(event) {
+                var $this = $(this);
+                var imgUrl = $this.children('img').attr('src');
+                console.log(imgUrl);
+                $siblings = $this.siblings('.active');
+                if ($siblings) {
+                    $siblings.removeClass('active');
+                }
+                $this.addClass('active');
+                var imgdom = document.createElement('img');
+                imgdom.setAttribute('src', imgUrl);
+                // imgdom.setAttribute('width', 800);
+                // imgdom.setAttribute('height', 800);
+                $('#img-zoom').empty().append(imgdom);
+            });
+            // $('#img-zoom').zoom();
+           
+        })
+
+        function initImageDetail() {
+            var imgUrl = $('.gphoto').nt
+        }
+    </script>
+</html>

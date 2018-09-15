@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>无标题文档</title> 
+<script language="javascript" src="../js/jquery-3.3.1.min.js"></script> 
+<script language="javascript"> 
+    $(function(){ 
+        var offsetX=20-$("#imgtest").offset().left; 
+        var offsetY=20-$("#imgtest").offset().top; 
+        var size=1.2*$('#imgtest ul li img').width(); 
+        var width = $('#imgtest ul li img').width();
+        var height = $('#imgtest ul li img').height();
+        $("#imgtest ul li img").mouseover(function(event) { 
+            $('#cover').show();
+        });
+        var currentTop, currentLeft;
+        $("#cover").mouseover(function(event) { 
+
+            var $target=$(event.target); 
+            var $siblings = $target.siblings('img');
+            $('#cover').show();
+            // if($target.is('img')) { 
+            //     $("<img id='tip' src='"+$target.attr("src")+"'>").css({ 
+                    // "height":'100%', 
+                    // "width":'100%',
+                    // 'top': 0,
+                    // 'left': '400px'
+                    // "top":event.pageX+offsetX, 
+                    // "left":event.pageY+offsetY, 
+                // }).appendTo($("#content")); 
+            // } 
+            // console.log(event.offsetX, event.pageX);
+            // console.log(event.offsetY, event.pageY);
+            var currentx = event.offsetX;
+            var currenty = event.offsetY;
+            var positionx = (currentx/width * 100) + '%';
+            var positiony = (currenty/height * 100) + '%';
+            console.log(positionx, positiony);
+            var imgurl = $siblings.attr('src');
+            $('#content').css({
+                'background-image': 'url("' + imgurl + '")',
+                'background-position-x': positionx,
+                'background-position-y': positiony
+            })
+
+            var cover = document.getElementById('cover');
+            cover.setAttribute('class', 'cover');
+            var top = currenty - 100;
+            var bottom = currenty + 100;
+
+            if (top < 0) {
+                currentTop = 0;
+            }
+            if (bottom > height) {
+                currentTop = height-200;
+            }
+
+            var left = currentx -100;
+            var right = currentx + 100;
+            if (left < 0) {
+                currentLeft = 0;
+            }
+            if (right > width) {
+                currentLeft = width - 200;
+            }
+            cover.style.top=currentTop + 'px';
+            cover.style.left=currentLeft+'px';
+
+            // document.getElementById('target').appendChild(cover);
+        }).mouseout(function() { 
+            $("#content").css({
+                'background-image': 'none'
+            });
+            $('.cover').hide();
+        }).mousemove(function(event) { 
+            // $("#tip").remove(); 
+            // $("#tip").css( 
+            //     { 
+            //         "left":event.pageX+offsetX, 
+            //         "top":event.pageY+offsetY 
+            //     }
+            // ); 
+            var $target=$(event.target); 
+            var $siblings = $target.siblings('img');
+            // if($target.is('img')) { 
+            //     $("<img id='tip' src='"+$target.attr("src")+"'>").css({ 
+                    // "height":'100%', 
+                    // "width":'100%',
+                    // 'top': 0,
+                    // 'left': '400px'
+                    // "top":event.pageX+offsetX, 
+                    // "left":event.pageY+offsetY, 
+                // }).appendTo($("#content")); 
+            // } 
+            $('.cover').hide();
+            var currentx = event.offsetX;
+            var currenty = event.offsetY;
+            var cover = document.getElementById('cover');
+            cover.setAttribute('class', 'cover');
+            var top = currenty - 100;
+            var bottom = currenty + 100;
+            // console.log('top', top);
+            if (top < 0) {
+                top = 0;
+            }
+            if (bottom > height) {
+                top = height-200;
+            }
+
+            var left = currentx -100;
+            var right = currentx + 100;
+            if (left < 0) {
+                left = 0;
+            }
+            if (right > width) {
+                left = width - 200;
+            }
+            cover.style.top = top + 'px',
+            cover.style.left = left + 'px'
+            // console.log(left, top)
+            // document.getElementById('target').appendChild(cover);
+            $('.cover').show();
+
+            // if (top == 0 && left == 0 || top == 0 && left == width - 200 || top == height-200 && left == 0 || top == height-200 && left == width - 200) {
+            //     return;
+            // }
+            var imgurl = $siblings.attr('src');
+            
+            var positionx = ((left)/width * 900) + 'px';
+            var positiony = ((top)/height * 900) + 'px';
+            console.log(positionx, positiony);
+            console.log(width, height);
+            $('#content').css({
+                'background-image': 'url("' + imgurl + '")',
+                'background-position-x': positionx,
+                'background-position-y': positiony
+            })
+        }); 
+    }) 
+</script> 
+<style type="text/css"> 
+img{ width:300px; position: relative; border:5px solid #FFF;} 
+/* #content{width:400px; height: 400px; position: absolute; top:0; left: 200px;} */
+#imgtest{ height:auto;width:840px; margin:0 auto; position:absolute; } 
+#imgtest ul{ position:relative;width:840px; height:auto; background:#00F;} 
+#imgtest ul li{ position:relative; height:276px; width:410px; list-style:none; float:left; margin:3px; border:1px solid #999;}
+.cover{
+    position: absolute;
+    /* background-color: #FEDE4F; */
+    background-color: #444;
+    opacity: 0.3;
+    height:200px;
+    width:200px;
+    z-index:1000;
+}
+#content{
+    height:600px;
+    width:600px;
+    background-image:url("../images/1.jpg"); 
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    /* background-attachment:fixed; */
+}
+.cover:hover{
+    cursor:move;
+}
+</style> 
+</head> 
+<body> 
+<div id="imgtest"> 
+<ul> 
+    <li id='target'><img id='org' src="../images/2.jpg" />
+     <div class='cover' id='cover'></div>
+    </li> 
+</ul> 
+
+</div> 
+<div id='content' style="margin-left:500px;"></div>
+</body> 
+</html> 

@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" href="../css/tablist.css">
+    </head>
+    <body>
+        <div class='tab-container'>
+            <div class="tablist" id='tab-1'>
+                <span>
+                        description
+                </span> </div>
+            <div class="tablist active" id='tab-2'>infomation</div>
+            <div class="tablist" id='tab-3'>review</div>
+            <div class="finished"></div>
+        </div>
+        
+    </body>
+    <style>
+       
+    </style>
+
+    <script>
+        $(function(){
+            $('.tablist').on('click', function(){
+                console.log('click');
+                
+                $active = $(this).siblings('.active');
+                console.log($active);
+                if (!$active) {
+                    return;
+                }
+                $active.removeClass('active');
+                $(this).addClass('active');
+            })
+        })
+        
+    </script>
+</html>

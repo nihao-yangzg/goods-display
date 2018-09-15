@@ -1,0 +1,131 @@
+<html>
+    <head>
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <script src="../js/menu.js"></script>
+        <script src="../js/select2.min.js"></script>
+        <script src="../js/item.js"></script>
+        <link rel="stylesheet" href="../css/style.css" type="text/css">
+        <link rel="stylesheet" href="../css/item.css" type="text/css">
+        <link rel="stylesheet" href="../css/select2.css" type="text/css">   
+    </head>
+    <body>
+        <div class="subnav container">
+            SLOGEN / PICTURE
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <div class="content-search">
+                    <div class="sub-search">
+                        <h3>BRAND</h3>
+                        <div>
+                            <select class="brand-select" name="state" style="height:50%;">
+                                <option value="AL">Alabama</option>
+                                <option value="WY">Wyoming</option>
+                                <option value="WY">Washington</option>
+                                <option value="WY">Tokyo</option>
+                                <option value="WY">Sydney</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="sub-search">
+                        <h3>PRODUCT</h3>
+                        <div>
+                            <select class="product-select" name="state">
+                                <option value="AL">Alabama</option>
+                                <option value="WY">Wyoming</option>
+                                <option value="WY">Washington</option>
+                                <option value="WY">Tokyo</option>
+                                <option value="WY">Sydney</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="content-display">
+                    <div class="goods">
+                        <ul id="goods-list">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </body>
+    <script>
+        $(function(){
+            
+            $('.brand-select').val("").select2({
+                placeholder: "Select a brand",
+                allowClear: true
+            });
+            $('.product-select').val("").select2({
+                placeholder: "Select a type",
+                allowClear: true
+            })
+            var goodslist = [
+                {'url': '../images/a.jpg', 'title': 'goods1', 'productId': 'fniewata'},
+                {'url': '../images/b.jpg', 'title': 'goods1', 'productId': 'fniewatb'},
+                {'url': '../images/c.jpg', 'title': 'goods1', 'productId': 'fniewatc'},
+                {'url': '../images/d.jpg', 'title': 'goods1', 'productId': 'fniewatd'},
+                {'url': '../images/e.jpg', 'title': 'goods1', 'productId': 'fniewate'},
+                {'url': '../images/f.jpg', 'title': 'goods1', 'productId': 'fniewatf'},
+                {'url': '../images/g.jpg', 'title': 'goods1', 'productId': 'fniewatg'},
+                {'url': '../images/h.jpg', 'title': 'goods1', 'productId': 'fniewath'},
+            ];
+            function createGoodsList(goods){
+                var dom = document.createElement("li");
+                var div = document.createElement('div');
+                var img = document.createElement('img');
+                img.setAttribute('src', goods['url']);
+                img.setAttribute('productId', goods['productId']);
+                div.appendChild(img);
+                var title = document.createElement('h3');
+                title.textContent = goods['title'];
+                dom.append(div);
+                dom.appendChild(title);
+                return dom;
+            }
+            goodslist.forEach(function(goods, index) {
+                $goodsList = $('#goods-list')
+                var dom = createGoodsList(goods);
+                if (index % 3 === 0) {
+                    dom.setAttribute('class', 'first');
+                } else if (index % 3 === 2) {
+                    dom.setAttribute('class', 'last');
+                }
+                $goodsList.append(dom);
+            });
+            $('.goods ul').on('mouseover', function(event) {
+                console.log(event.target.nodeName);
+                if (event.target.nodeName === 'IMG') {
+                    var $img = $(this);
+                    var height = $img.height(),
+                        width = $img.width();
+                    var hover = document.createElement('div');
+                    hover.style.height = height;
+                    hover.style.width = width;
+                    hover.setAttribute('id', 'img-hover');
+                    hover.style.position = 'relative';
+                    hover.style.top = '0';
+                    hover.style.left = '0';
+                    hover.style.backgroundColor = '#ccc';
+                    hover.textContent = 'click';
+                    console.log(hover);
+                    $img.parent('div').append(hover);
+                }
+            }).on('mouseout', function() {
+                $('#img-hover').remove();
+            })
+            $('.goods ul').on('click', function(event) {
+                if (event.target.nodeName === 'IMG') {
+                    var id = $(event.target).attr('productId');
+                    console.log(id);
+                    location.href='./detail.html?id=' + id;
+                }
+            });
+
+        })
+    </script>
+</html>
