@@ -1,0 +1,88 @@
+.manage.content-display {
+    width: 100%;
+}
+
+.manage.content-display ul li {
+    list-style-type: none;
+    position: relative;
+    /* height: 240px; */
+    width:25%;
+    min-width:240px;
+    margin:0;
+    float:left;
+    
+    text-align: left;
+}
+.manage.content-display ul li div.goods-subcontainer{
+    border: dotted 1px #cccccc;
+    
+}
+.manage.content-display ul li div.goods-container{
+    border: dotted 3px #ffffff;
+    margin:10px;
+}
+.manage.content-display ul li div.goods-subcontainer:hover{
+    border: dotted 1px #ffffff;
+    
+}
+.manage.content-display ul li div.goods-container:hover {
+    border: solid 3px #e03737;
+    transition: 0.5s;
+}
+.manage.content-display ul li.last {
+    /* clear:none; */
+    float:left;
+}
+
+.manage.content-display ul li:nth-child(3n+1) {
+    clear:none;
+}
+.manage.content-display ul li:nth-child(3n+2) {
+    clear:none;
+}
+.manage em.price {
+    font-size: 20px;
+    font-style: normal;
+    padding-left:10px;
+}
+.manage p {
+    margin:0;
+    color: #222222;
+    margin-bottom:10px;
+    padding-left:10px;
+}
+
+.manage p a {
+    text-decoration: none;
+}
+.goods-container {
+    position: relative;
+}
+
+.imghover {
+    background-color: rgba(10,10,10,0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    vertical-align: middle;
+    z-index:800;
+    font-size: 20px;
+    cursor: normal;
+}
+
+.imghover span.fa {
+    margin-top: 120px;
+}
+
+span.delete {
+    color: rgb(241, 46, 46);
+    margin: 10px;
+    cursor: pointer;
+}
+
+span.edit {
+    color: rgb(41, 226, 41);
+    margin: 10px;
+    cursor: pointer;
+}
