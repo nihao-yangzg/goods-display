@@ -1,0 +1,166 @@
+<html>
+    <head>
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <script src="../js/menu.js"></script>
+        <script src="../js/select2.min.js"></script>
+        <script src="../js/item.js"></script>
+        <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="../css/style.css" type="text/css">
+        <link rel="stylesheet" href="../css/item.css" type="text/css">
+        <link rel="stylesheet" href="../css/select2.css" type="text/css">
+        <link rel="stylesheet" href="../css/manage.css" type="text/css">
+    </head>
+    <body>
+        <!-- <div class="subnav container">
+            SLOGEN / PICTURE
+        </div> -->
+
+        <div class="container">
+            <div class="content">
+                <!-- <div class="content-search">
+                    <div class="sub-search">
+                        <h3>BRAND</h3>
+                        <div>
+                            <select class="brand-select" name="state" style="height:50%;">
+                                <option value="AL">Alabama</option>
+                                <option value="WY">Wyoming</option>
+                                <option value="WY">Washington</option>
+                                <option value="WY">Tokyo</option>
+                                <option value="WY">Sydney</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="sub-search">
+                        <h3>PRODUCT</h3>
+                        <div>
+                            <select class="product-select" name="state">
+                                <option value="AL">Alabama</option>
+                                <option value="WY">Wyoming</option>
+                                <option value="WY">Washington</option>
+                                <option value="WY">Tokyo</option>
+                                <option value="WY">Sydney</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                </div> -->
+                <div class="content-display manage">
+                    <div class="goods">
+                        <ul id="goods-list">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </body>
+    <script>
+        $(function(){
+            
+            // $('.brand-select').val("").select2({
+            //     placeholder: "Select a brand",
+            //     allowClear: true
+            // });
+            // $('.product-select').val("").select2({
+            //     placeholder: "Select a type",
+            //     allowClear: true
+            // })
+            var goodslist = [
+                {'imgUrl': '../images/a.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewata', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
+                {'imgUrl': '../images/b.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewatb', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
+                {'imgUrl': '../images/c.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewatc', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
+                {'imgUrl': '../images/d.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewatd', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
+                {'imgUrl': '../images/e.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewate', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
+                {'imgUrl': '../images/f.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewatf', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
+                {'imgUrl': '../images/g.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewatg', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
+                {'imgUrl': '../images/h.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewath', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
+            ];
+            function createGoodsList(goods){
+                var dom = document.createElement("li");
+                var container = document.createElement('div');
+                var subContainer = document.createElement('div');
+                var imgDiv = document.createElement('div');
+                var img = document.createElement('img');
+                var price = document.createElement('em');
+
+                img.setAttribute('src', goods['imgUrl']);
+                img.setAttribute('productId', goods['productId']);
+                imgDiv.appendChild(img);
+                imgDiv.setAttribute('class', 'img');
+
+                var title = document.createElement('p');
+                var link = document.createElement('a');
+                link.setAttribute('href', goods['goodsUrl']);
+                link.textContent = goods['title'];
+                title.appendChild(link);
+
+                price.textContent = goods['price'];
+                price.setAttribute('class', 'price');
+                // title.textContent = goods['title'];
+
+                subContainer.setAttribute('class', 'goods-subcontainer');
+                subContainer.append(imgDiv);
+                subContainer.append(price);
+                subContainer.appendChild(title);
+
+                container.setAttribute('class','goods-container');                
+                container.appendChild(subContainer);
+
+                dom.appendChild(container);
+
+                return dom;
+            }
+            goodslist.forEach(function(goods, index) {
+                $goodsList = $('#goods-list')
+                var dom = createGoodsList(goods);
+                if (index % 3 === 0) {
+                    dom.setAttribute('class', 'first');
+                } else if (index % 3 === 2) {
+                    dom.setAttribute('class', 'last');
+                }
+                $goodsList.append(dom);
+            });
+            $('.goods-container').on('mouseenter', function(event) {
+                console.log(event.target.nodeName);
+                // if (event.target.nodeName === 'IMG') {
+                    var $img = $(this);
+                    var height = $img.height(),
+                        width = $img.width();
+                    var hover = document.createElement('div');
+                    hover.style.height = height;
+                    hover.style.width = width;
+                    hover.setAttribute('id', 'img-hover');
+                    hover.setAttribute('class', 'imghover');
+                    
+                    var containerDom = document.createElement('div');
+                    containerDom.setAttribute('class', '')
+
+                    var deleteDom = document.createElement('span'),
+                        editDom = document.createElement('span');
+
+                    deleteDom.setAttribute('class', 'fa fa-trash fa-2x delete');
+                    editDom.setAttribute('class', 'fa fa-pencil-square-o fa-2x edit');
+
+                    containerDom.appendChild(editDom);
+                    containerDom.appendChild(deleteDom);
+
+                    hover.appendChild(containerDom);
+                    // hover.textContent = 'click';
+                    console.log(hover);
+                    $img.append(hover);
+                // }
+            }).on('mouseleave', function() {
+                $('#img-hover').remove();
+            })
+            $('.goods ul').on('click', function(event) {
+                if (event.target.nodeName === 'IMG') {
+                    var id = $(event.target).attr('productId');
+                    console.log(id);
+                    location.href='./detail.html?id=' + id;
+                }
+            });
+
+        })
+    </script>
+</html>
