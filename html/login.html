@@ -9,7 +9,6 @@
             .login {
                 vertical-align: middle;
                 text-align: center;
-               
                 width: 500px;
                 height: 300px;
                 border: dotted 1px #555555;
@@ -20,23 +19,55 @@
                 right:0;
                 bottom:0;
             }
+            .login-title {
+                margin-top:40px;
+                margin-bottom: 30px;
+            }
+            .form-unit {
+                margin: 20px;
+                height: 40px;
+                line-height: 40px;
+            }
+            .form-unit label {
+                width: 50px;
+                height: 30px;
+                line-height: 30px;
+            }
+            .form-unit input {
+                height: 30px;
+                width: 250px;
+            }
+
+            .form-button {
+                margin-left:80px;
+                margin-top: 10px;
+                margin-bottom: 20px;
+                height: 40px;
+                width: 250px;
+
+                background-color: white;
+                border: solid 1px #cccccc;
+            }
         </style>
     </head>
     <body>
         <div class="login">
             <div class="login-title">
-                <div class="login-form">
-                    <form>
-                        <div class="" id="username">
-                            <label for="username">Username</label>
-                            <input type='text' placeholder="Username">
-                        </div>
-                        <div id="password">
-                            <label for="password">Password</label>
-                            <input type="password" name="password" placeholder="password"/>
-                        </div>
-                    </form>
-                    
+                slogan
+            </div>
+            <div class="login-form">
+                <form>
+                    <div class="form-unit" id="username">
+                        <label for="username">Username</label>
+                        <input type='text' placeholder="Username">
+                    </div>
+                    <div id="password" class='form-unit'>
+                        <label for="password">Password</label>
+                        <input type="password" name="password" placeholder="password"/>
+                    </div>
+                </form>
+                <div>
+                    <button class="form-button">Login</button>
                 </div>
             </div>
         </div>
