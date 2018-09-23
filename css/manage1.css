@@ -17,26 +17,6 @@ body { /*设置内容与浏览器边框无间距*/
     top: 0px;
 }
 
-@media screen and (max-width: 980px) {
-    .container {
-        padding-left:10px;
-        padding-right:10px;
-
-    }
-}
-@media screen and (min-width: 981px) and (max-width: 1366px) {
-    .container {
-        padding-left: 10%;
-        padding-right: 10%;
-    }
-}
-@media screen and (min-width: 1367px) {
-    .container {
-        padding-left: 20%;
-        padding-right: 20%;
-        /* min-width: 1000px; */
-    }
-}
 .nav {
     margin: 0;
     background-color: rgba(10, 10, 10, 1);
@@ -338,3 +318,30 @@ input {
     display: none;
 }
 
+.imghover {
+    background-color: rgba(10,10,10,0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    vertical-align: middle;
+    z-index:800;
+    font-size: 20px;
+    cursor: normal;
+}
+
+.imghover span.fa {
+    margin-top: 120px;
+}
+
+span.delete {
+    color: rgb(241, 46, 46);
+    margin: 10px;
+    cursor: pointer;
+}
+
+span.edit {
+    color: rgb(41, 226, 41);
+    margin: 10px;
+    cursor: pointer;
+}
