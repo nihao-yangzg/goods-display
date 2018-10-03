@@ -4,90 +4,186 @@
         <link rel="stylesheet" href="../css/style.css">
         <script src="../js/jquery-3.3.1.min.js"></script>
         <style>
-            .info {
-                margin-bottom: 10px;
+            body{
+                font-size: 16px;
             }
-            .info-name{
+            .info, .password{
+                margin-bottom: 10px;
+                height:35px;
+            }
+            .info-name, .password-name{
                 width: 300px;
                 text-align: right;
                 display: inline-block;
                 font-size: 18px;
+                line-height:35px;
             }
-            .info-value {
+            .info-value, .password-value{
                 /* width: 500px; */
                 text-align: left;
                 display: inline-block;
                 font-size: 18px;
                 margin-left: 20px;
+                line-height:35px;
             }
             .userinfo-input{
                 font-size: 18px;
+            }
+            .button {
+                width: 100px;
+                height: 40px;
+                border:solid 1px #ccc;
+                background-color: white;
+                cursor: pointer;
+                border-radius: 5px;
+                transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            }
+            .info.submit {
+                margin-top: 40px;
+                margin-left: 320px;
+                /* text-align: center; */
+            }
+            .button.submit {
+                background-color:#123456;
+                color: white;
+                
+                border: solid 1px #123456;
+            }
+            .button.submit:hover {
+                box-shadow: 0 0 1px 1px#123456;
+            }
+            .button.cancel:hover {
+                box-shadow: 0 0 1px 1px#ccc;
+            }
+            .hidden {
+                display: none;
+            }
+            .head {
+                background-color: #123456;
+                height: 40px;
+                color:white;
+                text-align:center;
+            }
+            .user-info {
+                height: 300px;
             }
         </style>
     </head>
 
     <body>
+        <div class="head">
+            slogon
+        </div>
         <div class="container">
-            
-            <div class="info">
-                <div class="info-name">
-                    <span>Id</span>
+            <div class="user-info">
+                <h3>user info</h3>
+                <hr/>
+                <div class="info">
+                    <div class="info-name">
+                        <span>Id</span>
+                    </div>
+                    <div class="info-value uneditable">
+                        <span id="userid"></span>
+                    </div>
                 </div>
-                <div class="info-value uneditable">
-                    <span id="userid"></span>
+                <div class="info">
+                    <div class="info-name">
+                        <span>Name</span>
+                    </div>
+                    <div class="info-value">
+                        <span id="username"></span>
+                    </div>
+                    </div>
+                <div class="info">
+                    <div class="info-name">
+                        <span>phone</span>
+                    </div>
+    
+                    <div class="info-value">
+                        <span id="phone"></span>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="info-name">
+                        <span>Email address</span>
+                    </div>
+                    <div class="info-value">
+                        <span id="mailaddr"></span>
+                    </div>
+                </div>
+                <div class="info submit hidden" id="submit-buttons">
+                    <button class="button cancel" id="cancel">cancel</button>
+                    <button class="button submit" id="submit">submit</button>
                 </div>
             </div>
-            <div class="info">
-                <div class="info-name">
-                    <span>Name</span>
-                </div>
-                <div class="info-value">
-                    <span id="username"></span>
-                </div>
-                </div>
-            <div class="info">
-                <div class="info-name">
-                    <span>phone</span>
-                </div>
+            <hr/>
 
-                <div class="info-value">
-                    <span id="phone"></span>
+            <div>
+                <h3>change password</h3>
+                <div class="password">
+                    <div class="password-name">
+                        <span>old password</span>
+                    </div>
+                    
+                    <div class="password-value">
+                        <input type="password">
+                    </div>
                 </div>
-            </div>
-            <div class="info">
-                <div class="info-name">
-                    <span>Email address</span>
+                <div class="password">
+                    <div class="password-name">
+                        <span>new password</span>
+                    </div>
+                    <div class="password-value">
+                        <input type="password">
+                    </div>
                 </div>
-                <div class="info-value">
-                    <span id="mailaddr"></span>
+                <div class="password">
+
+                    <div class="password-name">
+                        <span>confirm password</span>
+                    </div>
+                    <div class="password-value">
+                        <input type="password">
+                    </div>
                 </div>
+                
             </div>
         </div>
     </body>
     <script>
         $(function() {
-
-            var userinfo = {
-                'username': 'abcd',
-                'id': 'niewhoitewjo[j',
-                'phone': '239753264080',
-                'emailAddr': 'abcd@email.com'
-            },
-            $userName = $('#username'),
-            $userId = $('#userid'),
-            $phone = $('#phone'),
-            $mailAddr = $('#mailaddr');
-            var undefinedStr = '------'
-            $userName.text(userinfo.username ? userinfo.username : undefinedStr);
-            $userId.text(userinfo.id ? userinfo.id : undefinedStr);
-            $phone.text(userinfo.phone? userinfo.phone: undefinedStr);
-            $mailAddr.text(userinfo.emailAddr ? userinfo.emailAddr : undefinedStr);
-
-
+            /**
+             * $this为input的父jquery dom.
+             */
+            function inputToSpan($this) {
+                var $inputs = $this.find('input');
+                var text, spanDom;
+                $inputs.each(function(index, dom){
+                    var $dom = $(dom);
+                    text = $dom.val();
+                    spanDom = document.createElement('span');
+                    spanDom.innerText = text;
+                    $dom.parents('div.info-value').append($(spanDom));
+                    $dom.remove();
+                })
+            }
+            /**
+             * $this 为 span的父节点
+             */
+            function spanToInput($this) {
+                var text = $this.children('span').text();
+                    $this.empty();
+                var inputDom = document.createElement('input');
+                inputDom.setAttribute('type', 'text');
+                inputDom.setAttribute('class', 'userinfo-input')
+                inputDom.value = text;
+                inputDom.setAttribute('autofocus', 'autofocus');
+                inputDom.select();
+                $this.append($(inputDom));
+            }
             $('.info-value').on('click', function(e) {
                 e.stopPropagation();
                 var target = e.target;
-                console.log(target.nodeName);
                 if (target.nodeName === 'INPUT') {
                     return;
                 }
@@ -96,15 +192,58 @@
                     return;
                 }
                 if ($this.has("span").length) {
-                    var text = $this.children('span').text();
-                    $this.empty();
-                    var inputDom = document.createElement('input');
-                    inputDom.setAttribute('type', 'text');
-                    inputDom.setAttribute('class', 'userinfo-input')
-                    inputDom.value = text;
-                    inputDom.setAttribute('autofocus', 'autofocus');
-                    $this.append($(inputDom));
+                    spanToInput($this);
+                    toggleHidden();
                 }
+            })
+            function toggleHidden() {
+                var $submitButtonDiv = $('#submit-buttons');
+                if ($submitButtonDiv.hasClass('hidden')) {
+                    $submitButtonDiv.removeClass('hidden');
+                }
+            }
+            function dumpData(data) {
+                var $id = $('#userid'),
+                $userName = $('#username'),
+                $phone = $('#phone'),
+                $mailAddr = $('#mailaddr');
+                var undefinedStr = '------';
+                $id.text(userinfo.id ? userinfo.id : undefinedStr);
+                $userName.text(userinfo.username ? userinfo.username : undefinedStr);
+                $phone.text(userinfo.phone? userinfo.phone: undefinedStr);
+                $mailAddr.text(userinfo.emailAddr ? userinfo.emailAddr : undefinedStr);
+            }
+
+            var userinfo = {
+                'username': 'abcd',
+                'id': 'niewhoitewjo[j',
+                'phone': '239753264080',
+                'emailAddr': 'abcd@email.com'
+            };
+            dumpData(userinfo);
+            $('#cancel').on('click', function(e){
+                var target = e.target,
+                    $this = $(this);
+                $this.parents('#submit-buttons').addClass('hidden');
+                inputToSpan($('div.info-value'));
+            })
+            
+            $('#submit').on('click', function(e) {
+                var target = e.target,
+                    $this = $(this);
+
+                $.ajax({
+                    url: '/user/edit',
+                    data: {'username': username, 'id': id, 'phone': phone, 'emailAddr': emailAddr},
+                    dataType: 'json',
+                    type: 'post',
+                    success: function(res) {
+                        dumpData(res.data);
+                    },
+                    error: function() {
+
+                    }
+                })
             })
         })
     </script>
