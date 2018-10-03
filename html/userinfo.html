@@ -3,20 +3,23 @@
         <meta charset='utf-8'>
         <link rel="stylesheet" href="../css/style.css">
         <script src="../js/jquery-3.3.1.min.js"></script>
+        <script src="../js/userinfo.js"></script>
         <style>
             body{
                 font-size: 16px;
             }
             .info, .password{
                 margin-bottom: 10px;
+                margin-top: 20px;
                 height:35px;
             }
             .info-name, .password-name{
-                width: 300px;
+                width: 35%;
                 text-align: right;
                 display: inline-block;
                 font-size: 18px;
                 line-height:35px;
+                font-weight: bold;
             }
             .info-value, .password-value{
                 /* width: 500px; */
@@ -25,22 +28,28 @@
                 font-size: 18px;
                 margin-left: 20px;
                 line-height:35px;
+                
+            }
+            .info-value  span{
+                cursor: pointer;
             }
             .userinfo-input{
                 font-size: 18px;
             }
             .button {
-                width: 100px;
-                height: 40px;
+                width: 80px;
+                height: 30px;
                 border:solid 1px #ccc;
                 background-color: white;
                 cursor: pointer;
                 border-radius: 5px;
                 transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
             }
-            .info.submit {
+            .info.submit,
+            .password.submit {
                 margin-top: 40px;
-                margin-left: 320px;
+                margin-left: 35%;
+                padding-left:20px;
                 /* text-align: center; */
             }
             .button.submit {
@@ -60,13 +69,13 @@
             }
             .head {
                 background-color: #123456;
-                height: 40px;
+                height: 80px;
+                line-height:80px;
+                font-size:20px;
                 color:white;
                 text-align:center;
             }
-            .user-info {
-                height: 300px;
-            }
+           
         </style>
     </head>
 
@@ -76,14 +85,14 @@
         </div>
         <div class="container">
             <div class="user-info">
-                <h3>user info</h3>
+                <h3>User Info</h3>
                 <hr/>
                 <div class="info">
                     <div class="info-name">
                         <span>Id</span>
                     </div>
                     <div class="info-value uneditable">
-                        <span id="userid"></span>
+                        <span id="userid" style="cursor: default;"></span>
                     </div>
                 </div>
                 <div class="info">
@@ -91,7 +100,7 @@
                         <span>Name</span>
                     </div>
                     <div class="info-value">
-                        <span id="username"></span>
+                        <span id="username" title="click to edit"></span>
                     </div>
                     </div>
                 <div class="info">
@@ -100,7 +109,7 @@
                     </div>
     
                     <div class="info-value">
-                        <span id="phone"></span>
+                        <span id="phone" title="click to edit"></span>
                     </div>
                 </div>
                 <div class="info">
@@ -108,18 +117,18 @@
                         <span>Email address</span>
                     </div>
                     <div class="info-value">
-                        <span id="mailaddr"></span>
+                        <span id="mailaddr" title="click to edit"></span>
                     </div>
                 </div>
-                <div class="info submit hidden" id="submit-buttons">
+                <div class="info submit" id="submit-buttons">
                     <button class="button cancel" id="cancel">cancel</button>
                     <button class="button submit" id="submit">submit</button>
                 </div>
             </div>
-            <hr/>
-
+            <!-- <hr/> -->
             <div>
-                <h3>change password</h3>
+                <h3>Change Password</h3>
+                <hr/>
                 <div class="password">
                     <div class="password-name">
                         <span>old password</span>
@@ -146,105 +155,12 @@
                         <input type="password">
                     </div>
                 </div>
-                
+                <div class="password submit" id="submit-buttons">
+                    <button class="button cancel" id="cancel">cancel</button>
+                    <button type="button" class="button submit" disabled="disabled" id="submit">submit</button>
+                </div>
             </div>
         </div>
     </body>
-    <script>
-        $(function() {
-            /**
-             * $this为input的父jquery dom.
-             */
-            function inputToSpan($this) {
-                var $inputs = $this.find('input');
-                var text, spanDom;
-                $inputs.each(function(index, dom){
-                    var $dom = $(dom);
-                    text = $dom.val();
-                    spanDom = document.createElement('span');
-                    spanDom.innerText = text;
-                    $dom.parents('div.info-value').append($(spanDom));
-                    $dom.remove();
-                })
-            }
-            /**
-             * $this 为 span的父节点
-             */
-            function spanToInput($this) {
-                var text = $this.children('span').text();
-                    $this.empty();
-                var inputDom = document.createElement('input');
-                inputDom.setAttribute('type', 'text');
-                inputDom.setAttribute('class', 'userinfo-input')
-                inputDom.value = text;
-                inputDom.setAttribute('autofocus', 'autofocus');
-                inputDom.select();
-                $this.append($(inputDom));
-            }
-            $('.info-value').on('click', function(e) {
-                e.stopPropagation();
-                var target = e.target;
-                if (target.nodeName === 'INPUT') {
-                    return;
-                }
-                var $this = $(this);
-                if ($this.hasClass('uneditable')) {
-                    return;
-                }
-                if ($this.has("span").length) {
-                    spanToInput($this);
-                    toggleHidden();
-                }
-            })
-            function toggleHidden() {
-                var $submitButtonDiv = $('#submit-buttons');
-                if ($submitButtonDiv.hasClass('hidden')) {
-                    $submitButtonDiv.removeClass('hidden');
-                }
-            }
-            function dumpData(data) {
-                var $id = $('#userid'),
-                $userName = $('#username'),
-                $phone = $('#phone'),
-                $mailAddr = $('#mailaddr');
-                var undefinedStr = '------';
-                $id.text(userinfo.id ? userinfo.id : undefinedStr);
-                $userName.text(userinfo.username ? userinfo.username : undefinedStr);
-                $phone.text(userinfo.phone? userinfo.phone: undefinedStr);
-                $mailAddr.text(userinfo.emailAddr ? userinfo.emailAddr : undefinedStr);
-            }
 
-            var userinfo = {
-                'username': 'abcd',
-                'id': 'niewhoitewjo[j',
-                'phone': '239753264080',
-                'emailAddr': 'abcd@email.com'
-            };
-            dumpData(userinfo);
-            $('#cancel').on('click', function(e){
-                var target = e.target,
-                    $this = $(this);
-                $this.parents('#submit-buttons').addClass('hidden');
-                inputToSpan($('div.info-value'));
-            })
-            
-            $('#submit').on('click', function(e) {
-                var target = e.target,
-                    $this = $(this);
-
-                $.ajax({
-                    url: '/user/edit',
-                    data: {'username': username, 'id': id, 'phone': phone, 'emailAddr': emailAddr},
-                    dataType: 'json',
-                    type: 'post',
-                    success: function(res) {
-                        dumpData(res.data);
-                    },
-                    error: function() {
-
-                    }
-                })
-            })
-        })
-    </script>
 </html>
