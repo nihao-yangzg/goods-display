@@ -1,5 +1,7 @@
 <html>
     <head>
+        <meta charset='utf-8'>
+        <link href="../favicon.ico" rel="icon" type="image/x-icon" />
         <script src="../js/jquery-3.3.1.min.js"></script>
         <link rel="stylesheet" href="../css/font-awesome.min.css">
         <style>
@@ -15,7 +17,7 @@
                 vertical-align: middle;
                 text-align: center;
                 width: 400px;
-                height: 300px;
+                height:  350px;
                 border: solid 1px rgba(255,255,255,0.5);
                 margin:auto;
                 position: absolute;
@@ -38,7 +40,7 @@
             .form-unit {
                 /* position:absolute; */
                 margin:auto;
-                margin-bottom: 20px;
+                margin-bottom: 30px;
                 /* margin: 20px; */
                 width: 300px;
                 height: 40px;
@@ -64,7 +66,7 @@
             }
             
             .form-button {
-                margin-bottom: 20px;
+                margin-bottom: 30px;
                 height: 40px;
                 width: 300px;
                 border-radius: 5px;
@@ -84,6 +86,29 @@
                 border:solid 1px #123456;
                 
             }
+            .attach-info {
+               
+                font-size: 14px;
+                margin:auto;
+                margin-top:5px;
+                margin-bottom:10px;
+                text-align: center;
+                width:300px;
+            }
+
+            .attach-info div{
+                text-align: left;
+            }
+            .attach-info div a{
+                text-decoration:none;
+                color: #123456;
+            }
+
+            .attach-info div a:hover{
+                font-weight: 600;
+                transition: font-weight 0.15s ease;
+            }
+            
             ::-webkit-input-placeholder { /* WebKit browsers */
                 color:    #123456;
             }
@@ -107,15 +132,20 @@
                 <form>
                     <div class="form-unit" id="username">
                         <span class="fa fa-user-o"></span>
-                        <input type='text' placeholder="USERNAME">
+                        <input type='text' placeholder="USERNAME" id="username">
                     </div>
                     <div id="password" class='form-unit'>
                         <span class="fa fa-key"></span>
-                        <input type="password" name="password" placeholder="PASSWORD"/>
+                        <input type="password" name="password" placeholder="PASSWORD" id="passwd"/>
                     </div>
                 </form>
+                <div class="attach-info">
+                    <div>
+                        <a href="./index.html">Forgot password</a>                        
+                    </div>                    
+                </div>
                 <div>
-                    <button class="form-button">LOGIN</button>
+                    <button class="form-button" id="login">LOGIN</button>
                 </div>
             </div>
         </div>
@@ -131,8 +161,25 @@
                 if (!$parentDiv.hasClass('active')) {
                     $parentDiv.addClass('active');
                 }
-                
             })
+
+            $('#login').on('click', function(e) {
+                var username = $('#username').val(),
+                    password = $('#passwd').val();
+                $.ajax({
+                    url: '/api/login',
+                    data: {'username': username, 'password': password},
+                    type: 'post',
+                    dataType: 'json',
+                    success: function(res) {
+                        location.href='/html/manage.html'
+                    },
+                    error: function(res) {
+                        alert('username or password error.');
+                    }
+                })
+            })
+
         })
     </script>
 </html>

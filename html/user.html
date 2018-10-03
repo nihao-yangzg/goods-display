@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/bootstrap-table.min.css">
+
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/bootstrap-table.min.js"></script>
+        <style>
+            .fixed-table-body{
+                height:auto;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class="container">
+            <table id="userTable" class='table'>
+                <thead>
+                    <tr>
+                        <th data-field="id">id</th>
+                        <th data-field="username">username</th>
+                        <th data-field="emailaddr">email address</th>
+                        <th data-field="phoneNo">phone NO</th>
+                    </tr>
+                </thead>
+                <tbody> 
+
+                </tbody>
+            </table>
+        </div>
+    </body>
+    <script>
+        $(function(){
+            var users = [
+                {'id': 1, 'username': 'zhangsan', 'emailaddr': 'zhangsan@email.com', 'phoneNo': '12345678'},
+                {'id': 1, 'username': 'zhangsan', 'emailaddr': 'zhangsan@email.com', 'phoneNo': '12345678'},
+                {'id': 1, 'username': 'zhangsan', 'emailaddr': 'zhangsan@email.com', 'phoneNo': '12345678'},
+                {'id': 1, 'username': 'zhangsan', 'emailaddr': 'zhangsan@email.com', 'phoneNo': '12345678'},
+                {'id': 1, 'username': 'zhangsan', 'emailaddr': 'zhangsan@email.com', 'phoneNo': '12345678'},
+            ];
+            $('#userTable').bootstrapTable({
+                data: users,
+            })
+        })
+    </script>
+</html>
