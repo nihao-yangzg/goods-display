@@ -19,6 +19,9 @@ var initPager = function(realPages) {
         } else if (i <= initLength) {
             aDom.innerText = i;
             aDom.setAttribute('page-data', i);
+            if (i === 1) {
+                aDom.setAttribute('class', 'page-link active');
+            }
         } else {
             aDom.innerText = 'Next>';
             aDom.setAttribute('page-action', '+1');
