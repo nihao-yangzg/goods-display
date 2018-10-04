@@ -4,9 +4,27 @@
         <script src="../js/menu.js"></script>
         <script src="../js/select2.min.js"></script>
         <script src="../js/item.js"></script>
+        <script src="../js/pager.js"></script>
         <link rel="stylesheet" href="../css/style.css" type="text/css">
         <link rel="stylesheet" href="../css/item.css" type="text/css">
-        <link rel="stylesheet" href="../css/select2.css" type="text/css">   
+        <link rel="stylesheet" href="../css/select2.css" type="text/css">
+        <link rel="stylesheet" href="../css/page.css">
+        <style>
+            .page-foot {
+                padding-left: 20%;
+            }
+            .main-foot{
+                height: 60px;
+                line-height: 60px;
+                text-align: left;
+                background-color: white;
+                position:relative;
+                /* top: 100%; */
+                bottom:0;
+                left: 0;
+                width:100%;
+            }
+        </style>
     </head>
     <body>
         <div class="subnav container">
@@ -48,10 +66,17 @@
                         </ul>
                     </div>
                 </div>
+                <div class="page-foot">
+
+                </div>
+
             </div>
+            <div class="main-foot">
+                    <span>&copy Display System </span>
+                </div>
         </div>
         
-        
+       
     </body>
     <script>
         $(function(){
@@ -125,6 +150,7 @@
                     location.href='./detail.html?id=' + id;
                 }
             });
+            $('div.page-foot').append($(initPager()));
 
         })
     </script>

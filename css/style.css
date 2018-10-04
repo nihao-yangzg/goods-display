@@ -91,16 +91,18 @@ body { /*设置内容与浏览器边框无间距*/
 .subnav {
     margin:0;
     height: 360px;
-    background-color: #222;
+    /* background-color: #222; */
     line-height: 360px;
     font-size: 50px;
     text-align: center;
+    background-image: url('../images/senlin.jpg');
 }
 
 .content{
     /* height: 1000px; */
     /* border: 1px #555 dotted ; */
     margin-top: 80px;
+    margin-bottom: 40px;
     
 }
 .content .content-search{

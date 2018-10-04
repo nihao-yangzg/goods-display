@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <script src="../js/pager.js"></script>
+        <link rel="stylesheet" href="../css/page.css">
+    </head>
+    <body>
+        <div class="container">
+
+            <div class="pager">
+                <ul>
+                    <li class="page-container">
+                        <a href="" class='page-link'>&lt;上一页</a>
+                    </li>
+                    <li class="page-container">
+                        <a href="" class='page-link'>1</a>
+                    </li>
+                    <li class="page-container">
+                        <a href="" class="page-link">2</a>
+                    </li>
+                    <li class="page-container">
+                        <a href="" class="page-link">3</a>
+                    </li>
+                    <li class="page-container">
+                        <a href="" class="page-link active">4</a>
+                    </li>
+                    <li class="page-container">
+                        <a href="" class="page-link">5</a>
+                    </li>
+                    <li class="page-container">
+                        <a href="" class="page-link">6</a>
+                    </li>
+
+                    <li class="page-container">
+                        <a href="" class="page-link">7</a>
+                    </li>
+                
+                    <li class="page-container">
+                        <a href="" class="page-link">8</a>
+                    </li>
+                    <li class="page-container">
+                        <a href="" class="page-link">9</a>
+                    </li>
+                    <li class="page-container">
+                        <a href="" class="page-link">10</a>
+                    </li>
+                    <li class="page-container">
+                        <a href="" class='page-link'>下一页&gt;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+    <script>
+        $(function(){
+            $('div.container').append($(initPager(11)));
+
+        })
+    </script>
+</html>

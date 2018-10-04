@@ -1,0 +1,31 @@
+.pager ul {
+    list-style:none;
+    margin-left:0;
+    padding: 0;
+}
+.page-container {
+    display: inline;
+    margin: 0 3px;
+}
+.page-link {
+    text-decoration: none;
+    border: solid 1px #cccccc;
+    padding: 5px 10px;
+    background-color: white;
+    transition: color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+.page-link.active,
+.page-link.active:hover {
+    background-color: #123456;
+    color: white;
+    border-color: #123456;
+    box-shadow: 0 0 1px 1px #123456;
+}
+.page-link:hover {
+    border-color: rgba(18,52,86,0.6);
+    color: #123456;
+    box-shadow: 0 0 1px 1px rgba(18,52,86,0.4);
+}
+.hidden {
+    display:none;
+}
