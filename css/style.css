@@ -156,9 +156,9 @@ body { /*设置内容与浏览器边框无间距*/
     
     margin-right:15px;
     margin-left:15px;
-    height: 240px;
+    /* height: 240px; */
     /* width:100%; */
-    text-align: center;
+    text-align: left;
     border: 0.2px #ccc dotted;
 }
 .content-display ul li img{

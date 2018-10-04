@@ -1,5 +1,6 @@
 <html>
     <head>
+        <meta charset="utf-8">
         <script src="../js/jquery-3.3.1.min.js"></script>
         <script src="../js/menu.js"></script>
         <script src="../js/select2.min.js"></script>
@@ -9,6 +10,7 @@
         <link rel="stylesheet" href="../css/item.css" type="text/css">
         <link rel="stylesheet" href="../css/select2.css" type="text/css">
         <link rel="stylesheet" href="../css/page.css">
+        <link rel="stylesheet" href="../css/index.css">
         <style>
             .page-foot {
                 padding-left: 20%;
@@ -91,20 +93,20 @@
                 allowClear: true
             })
             var goodslist = [
-                {'url': '../images/a.jpg', 'title': 'goods1', 'productId': 'fniewata'},
-                {'url': '../images/b.jpg', 'title': 'goods1', 'productId': 'fniewatb'},
-                {'url': '../images/c.jpg', 'title': 'goods1', 'productId': 'fniewatc'},
-                {'url': '../images/d.jpg', 'title': 'goods1', 'productId': 'fniewatd'},
-                {'url': '../images/e.jpg', 'title': 'goods1', 'productId': 'fniewate'},
-                {'url': '../images/f.jpg', 'title': 'goods1', 'productId': 'fniewatf'},
-                {'url': '../images/g.jpg', 'title': 'goods1', 'productId': 'fniewatg'},
-                {'url': '../images/h.jpg', 'title': 'goods1', 'productId': 'fniewath'},
+                {'imgUrl': '../images/a.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewata', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
+                {'imgUrl': '../images/b.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewatb', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
+                {'imgUrl': '../images/c.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewatc', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
+                {'imgUrl': '../images/d.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewatd', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
+                {'imgUrl': '../images/e.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewate', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
+                {'imgUrl': '../images/f.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewatf', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
+                {'imgUrl': '../images/g.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewatg', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
+                {'imgUrl': '../images/h.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewath', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
             ];
-            function createGoodsList(goods){
+            function createGoodsList0(goods){
                 var dom = document.createElement("li");
                 var div = document.createElement('div');
                 var img = document.createElement('img');
-                img.setAttribute('src', goods['url']);
+                img.setAttribute('src', goods['imgUrl']);
                 img.setAttribute('productId', goods['productId']);
                 div.appendChild(img);
                 var title = document.createElement('h3');
@@ -113,9 +115,46 @@
                 dom.appendChild(title);
                 return dom;
             }
+            function createGoodsList1(goods){
+                var dom = document.createElement("li");
+                var container = document.createElement('div');
+                var subContainer = document.createElement('div');
+                var imgDiv = document.createElement('div');
+                var img = document.createElement('img');
+                var price = document.createElement('em');
+
+                img.setAttribute('src', goods['imgUrl']);
+                img.setAttribute('productId', goods['productId']);
+                imgDiv.appendChild(img);
+                imgDiv.setAttribute('class', 'img');
+
+                var title = document.createElement('p');
+                var link = document.createElement('a');
+                link.setAttribute('href', goods['goodsUrl']);
+                link.textContent = goods['title'];
+                title.appendChild(link);
+
+                price.textContent = goods['price'];
+                price.setAttribute('class', 'price');
+                // title.textContent = goods['title'];
+
+                subContainer.setAttribute('class', 'goods-subcontainer');
+                subContainer.append(imgDiv);
+                subContainer.append(price);
+                subContainer.appendChild(title);
+
+                container.setAttribute('class','goods-container');                
+                container.appendChild(subContainer);
+
+                dom.appendChild(container);
+
+                return dom;
+            }
             goodslist.forEach(function(goods, index) {
                 $goodsList = $('#goods-list')
-                var dom = createGoodsList(goods);
+                // var dom = createGoodsList0(goods);
+                var dom = createGoodsList1(goods);
+
                 if (index % 3 === 0) {
                     dom.setAttribute('class', 'first');
                 } else if (index % 3 === 2) {
@@ -123,27 +162,27 @@
                 }
                 $goodsList.append(dom);
             });
-            $('.goods ul').on('mouseover', function(event) {
-                console.log(event.target.nodeName);
-                if (event.target.nodeName === 'IMG') {
-                    var $img = $(this);
-                    var height = $img.height(),
-                        width = $img.width();
-                    var hover = document.createElement('div');
-                    hover.style.height = height;
-                    hover.style.width = width;
-                    hover.setAttribute('id', 'img-hover');
-                    hover.style.position = 'relative';
-                    hover.style.top = '0';
-                    hover.style.left = '0';
-                    hover.style.backgroundColor = '#ccc';
-                    hover.textContent = 'click';
-                    console.log(hover);
-                    $img.parent('div').append(hover);
-                }
-            }).on('mouseout', function() {
-                $('#img-hover').remove();
-            })
+            // $('.goods ul').on('mouseover', function(event) {
+            //     console.log(event.target.nodeName);
+            //     if (event.target.nodeName === 'IMG') {
+            //         var $img = $(this);
+            //         var height = $img.height(),
+            //             width = $img.width();
+            //         var hover = document.createElement('div');
+            //         hover.style.height = height;
+            //         hover.style.width = width;
+            //         hover.setAttribute('id', 'img-hover');
+            //         hover.style.position = 'relative';
+            //         hover.style.top = '0';
+            //         hover.style.left = '0';
+            //         hover.style.backgroundColor = '#ccc';
+            //         hover.textContent = 'click';
+            //         console.log(hover);
+            //         $img.parent('div').append(hover);
+            //     }
+            // }).on('mouseout', function() {
+            //     $('#img-hover').remove();
+            // })
             $('.goods ul').on('click', function(event) {
                 if (event.target.nodeName === 'IMG') {
                     var id = $(event.target).attr('productId');

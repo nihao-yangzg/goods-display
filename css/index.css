@@ -1,0 +1,46 @@
+
+.content-display ul li div.goods-subcontainer{
+    border: dotted 1px #cccccc;
+    
+}
+.content-display ul li div.goods-container{
+    border: dotted 3px #ffffff;
+    margin:10px;
+}
+.content-display ul li div.goods-subcontainer:hover{
+    border: dotted 1px #ffffff;
+    
+}
+.content-display ul li div.goods-container:hover {
+    border: solid 3px #e03737;
+    transition: 0.5s;
+}
+
+em.price {
+    font-size: 20px;
+    font-style: normal;
+    padding-left:10px;
+}
+ p {
+    margin:0;
+    color: #222222;
+    margin-bottom:10px;
+    padding-left:10px;
+}
+
+p a {
+    text-decoration: none;
+}
+.goods-container {
+    position: relative;
+}
+
+.content-display ul li div.img{
+    margin-top:5px;
+    margin-right:5px;
+    margin-left:5px;
+    height: 240px;
+    /* width:100%; */
+    /* text-align: center; */
+    /* border: 0.2px #ccc dotted; */
+}
