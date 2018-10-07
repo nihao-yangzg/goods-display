@@ -1,9 +1,9 @@
 
-var initPager = function(realPages) {
+var initPager = function(realPages, divId) {
     var divDom = document.createElement('div'),
         ulDom = document.createElement('ul');
     divDom.setAttribute('class','pager');
-    
+    divDom.setAttribute('id', divId);
     var initLength = 10;
     if (initLength > realPages) {
         initLength = realPages;
@@ -29,7 +29,7 @@ var initPager = function(realPages) {
                 aDom.setAttribute('class', 'page-link hidden');
             }
         }
-        aDom.setAttribute('href','');
+        aDom.setAttribute('style','cursor: pointer');
         liDom = document.createElement('li');
         liDom.setAttribute('class', 'page-container');
         liDom.appendChild(aDom);
@@ -37,6 +37,9 @@ var initPager = function(realPages) {
     }
     divDom.appendChild(ulDom);
     return divDom;
+}
+var pageClick = function(url, action) {
+    
 }
 window.myPage = {'initPager': initPager};
     
