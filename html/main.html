@@ -1,0 +1,235 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Main</title>
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <!-- <script src="../js/menu.js"></script> -->
+        <!-- <script src="../js/select2.min.js"></script> -->
+        <!-- <script src="../js/item.js"></script> -->
+        <!-- <script src="../js/pager.js"></script> -->
+        <!-- <script src="../js/index.js"></script> -->
+        <!-- <link rel="stylesheet" href="../css/style.css" type="text/css"> -->
+        <!-- <link rel="stylesheet" href="../css/item.css" type="text/css"> -->
+        <!-- <link rel="stylesheet" href="../css/select2.css" type="text/css"> -->
+        <!-- <link rel="stylesheet" href="../css/page.css"> -->
+        <!-- <link rel="stylesheet" href="../css/index.css"> -->
+        <style>
+            body {
+                background-color: #fff;
+            }
+            .header {
+                width: 100%;
+                height: 80px;
+                /* background-image: url('../images/senlin.jpg'); */
+                background-color: #123456;
+                position:fixed;
+                top:0;
+                left:0;
+                text-align: center;
+                color:#aaa;
+                z-index: 1000;
+            }
+            .container {
+                position:absolute;
+                margin:auto;
+                top: 100px;
+                bottom:0;
+                left: 0;
+                right: 0;
+                width:1141px;
+                /* border: solid 1px #ccc; */
+            }
+            .catalog-menu {
+                width: 20%;
+                float:left;
+            }
+            .catalog-menu ul {
+                border: solid 1px #ccc;
+                margin:0;
+                padding: 0;
+                
+            }
+            .catalog-menu li {
+                list-style:none;
+                padding-top: 10px;
+                padding-left: 40px;
+                padding-bottom: 10px;
+                cursor: pointer;
+                position:relative;
+                height: 30px;
+                line-height:30px;
+                border-bottom: solid 1px #aaa;
+            }
+            .catalog-menu li:hover {
+                background-color: #123456;
+                color:white;
+
+            }
+            .catalog-main {
+                width: 80%;
+                float:left;
+                margin-bottom:40px;
+            }
+            .main {
+                
+                width: 100%;
+                height:auto;
+            }
+            .main ul {
+                /* border: solid 1px #ccc; */
+                margin:0;
+                border-top: solid 1px #ccc;
+            }
+            .catalog-main li {
+                list-style: none;
+                width: 33.3%;
+                float: left;
+
+            }
+           
+            .catalog-main li div {
+                margin:10px;
+            }
+            .catalog-main li img {
+                width:225px;
+                max-height: 300px;
+            }
+            .detail {
+                display:none;
+                position: absolute;
+                left: 100%;
+                top: -6px;
+                width: 600px;
+                background-color:white;
+            }
+            .catalog {
+                border: solid 1px #eee;
+                text-align: center;
+                padding-top:10px;
+                transition: border-color 0.15s ease-in-out;
+            }
+            .catalog span {
+                display:block;
+                color: #123456;
+                font-size: 14px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+            .catalog:hover{
+                border-color: #123456;
+                cursor:pointer;
+            }
+        </style>
+    </head>
+    <body> 
+        <div class="header">
+            <h3>
+                Enjoy Your Life
+            </h3>
+        </div>
+        <div class="container">
+            <div class="content">
+                <div class="catalog-menu">
+                   <ul id="menus">
+                        <!-- <li><a>Women's clothes</a>
+                            <div class="detail">
+                                <ul>
+                                    <li>1</li>
+                                    <li>3</li>
+                                    <li>4</li>
+                                    <li>5</li>
+                                    <li>7</li>
+                                </ul>
+                            </div>               
+                        </li>
+                        <li><a>Men's clothes</a></li>
+                        <li><a>Underclothes</a></li>
+                        <li><a>Women's Shoes</a></li>
+                        <li><a>Men's Shoes</a></li>
+                        <li><a>Jewelry</a></li>
+                        <li><a>Eye Glass</a></li>
+                        <li><a>Watch</a></li>
+                        <li><a>Home textiles</a></li>
+                        <li><a>Cosmetic</a></li>
+                        <li><a>Toiletries</a></li> -->
+                   </ul>
+                </div>
+                <div class="catalog-main">
+                    <div class="main">
+                        <ul id="catalogs">
+                       
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <h4>
+                &copy Display 
+            </h4> 
+        </div>
+    </body>
+    <script>
+        $(function() {
+            var catalogs;
+            $.ajax({
+                url: '/api/catalogs',
+                type: 'get',
+                dateType: 'json',
+                success: function(res) {
+                    catalogs = res.data;
+                },
+                error: function(err) {
+                    console.log(err.responseText);
+                }
+            })
+            catalogs = [
+                {'id': '123456', 'image': '../images/3.jpg', 'title': 'Women\'s Clothes'},
+                {'id': '123456', 'image': '../images/4.jpg', 'title': 'Men\'s Clothes'},
+                {'id': '123456', 'image': '../images/5.jpg', 'title': 'Underclothes'},
+                {'id': '123456', 'image': '../images/9.jpg', 'title': 'Women\'s Shoes'},
+                {'id': '123456', 'image': '../images/7.jpg', 'title': 'Men\'s Shoes'},
+                {'id': '123456', 'image': '../images/10.jpg', 'title': 'Watch'},
+                {'id': '123456', 'image': '../images/8.jpg', 'title': 'Jewelry'},
+                {'id': '123456', 'image': '../images/11.jpg', 'title': 'Eye Glass'},
+                {'id': '123456', 'image': '../images/12.jpg', 'title': 'Home textiles'},
+                {'id': '123456', 'image': '../images/13.jpg', 'title': 'Cosmetic'},
+                {'id': '123456', 'image': '../images/14.jpg', 'title': 'Toiletries'}
+            ];
+            var $catalogs = $('#catalogs'),
+                $menus = $('#menus');
+            var liDom, divDom, imgDom, spanDom;
+            var menuLiDom, menuADom;
+            catalogs.forEach(function(item,index) {
+                liDom = document.createElement('li');
+                liDom.setAttribute('data-id', item['id']);
+
+                divDom = document.createElement('div');
+                divDom.setAttribute('class', 'catalog');
+
+                imgDom = document.createElement('img');
+                imgDom.setAttribute('src', item['image']);
+                imgDom.setAttribute('alt', item['title']);
+
+                spanDom = document.createElement('span');
+                spanDom.innerText = item['title'];
+
+                divDom.appendChild(imgDom);
+                divDom.appendChild(spanDom);
+
+                liDom.append(divDom);
+
+                $catalogs.append($(liDom));
+
+                menuLiDom = document.createElement('li');
+                menuLiDom.setAttribute('data-id', item['id']);
+
+                menuADom = document.createElement('a');
+                menuADom.innerText = item['title'];
+
+                menuLiDom.appendChild(menuADom);
+
+                $menus.append($(menuLiDom));
+            })
+        })
+    </script>
+</html>
