@@ -172,7 +172,7 @@
         $(function() {
             var catalogs;
             $.ajax({
-                url: '/api/catalogs',
+                url: '/api/main/catalogs',
                 type: 'get',
                 dateType: 'json',
                 success: function(res) {
@@ -197,39 +197,43 @@
             ];
             var $catalogs = $('#catalogs'),
                 $menus = $('#menus');
-            var liDom, divDom, imgDom, spanDom;
-            var menuLiDom, menuADom;
-            catalogs.forEach(function(item,index) {
-                liDom = document.createElement('li');
-                liDom.setAttribute('data-id', item['id']);
+           
+            function showCatalogs(catalogs, $catalogs, $menus) {
+                var liDom, divDom, imgDom, spanDom;
+                var menuLiDom, menuADom;
+                catalogs.forEach(function(item,index) {
+                    liDom = document.createElement('li');
+                    liDom.setAttribute('data-id', item['id']);
 
-                divDom = document.createElement('div');
-                divDom.setAttribute('class', 'catalog');
+                    divDom = document.createElement('div');
+                    divDom.setAttribute('class', 'catalog');
 
-                imgDom = document.createElement('img');
-                imgDom.setAttribute('src', item['image']);
-                imgDom.setAttribute('alt', item['title']);
+                    imgDom = document.createElement('img');
+                    imgDom.setAttribute('src', item['image']);
+                    imgDom.setAttribute('alt', item['title']);
 
-                spanDom = document.createElement('span');
-                spanDom.innerText = item['title'];
+                    spanDom = document.createElement('span');
+                    spanDom.innerText = item['title'];
 
-                divDom.appendChild(imgDom);
-                divDom.appendChild(spanDom);
+                    divDom.appendChild(imgDom);
+                    divDom.appendChild(spanDom);
 
-                liDom.append(divDom);
+                    liDom.append(divDom);
 
-                $catalogs.append($(liDom));
+                    $catalogs.append($(liDom));
 
-                menuLiDom = document.createElement('li');
-                menuLiDom.setAttribute('data-id', item['id']);
+                    menuLiDom = document.createElement('li');
+                    menuLiDom.setAttribute('data-id', item['id']);
 
-                menuADom = document.createElement('a');
-                menuADom.innerText = item['title'];
+                    menuADom = document.createElement('a');
+                    menuADom.innerText = item['title'];
 
-                menuLiDom.appendChild(menuADom);
+                    menuLiDom.appendChild(menuADom);
 
-                $menus.append($(menuLiDom));
-            })
+                    $menus.append($(menuLiDom));
+                })
+            }
+            showCatalogs(catalogs, $catalogs, $menus);
         })
     </script>
 </html>

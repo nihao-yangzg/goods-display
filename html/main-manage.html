@@ -115,31 +115,65 @@
                 height: 300px;
                 /* line-height: 300px; */
                 text-align: center;
-                cursor:pointer;
+                /* cursor:pointer; */
                 position: relative;
+            }
+            #add-btn {
+                cursor: pointer;
+                margin:10px;
+                border:solid 1px #ccc;
+            }
+
+            #mask {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top:0; left:0; bottom:0; right:0;
+                background-color:rgba(4,4,4, 0.4);
             }
             #add-form{
                 position:absolute;
-                top:60px;
-                left:30px;
+                top:0;
+                right:0;
+                left:0;
+                bottom:0;
                 margin:auto;
-                width: 80%;
+                vertical-align: middle;
+                width: 400px;
+                height: 300px;
                 z-index: 1000;
                 /* display:none; */
                 background-color: white;
+                /* padding-bottom:80px; */
                 /* height: 300px; */
+                /* vertical-align: middle; */
+                /* padding-top:80px; */
                 /* text-align: right; */
+            }
+            .hidden {
+                display: none;
+            }
+            #add-form>div {
+                /* margin-top: 120px; */
+                vertical-align: middle;
+                margin-top: 80px;
+                position: relative;
+                
             }
             #add-form div{
                 height: 35px;
                 line-height: 35px;
-                margin:10px;
-                /* text-align: right; */
+                /* margin:10px; */
+                text-align: center;
+                vertical-align: middle;
             }
             #add-form input{
                 width: 200px;
-                height: 35px;
+                height: 30px;
                 padding-left: 10px;
+                outline: none;
+                /* margin: 10px; */
+
             }
             #add-form span{
                 display:inline-block;
@@ -153,7 +187,11 @@
                 height: 30px;
                 width: 70px;
                 line-height: 30px;
+                cursor: pointer;
             }
+            /* .form-item {
+                margin-bottom:30px;
+            } */
         </style>
     </head>
 
@@ -173,33 +211,133 @@
                     <div class="main">
                         <ul id="catalogs">
                             
+
+                        
+                            <li class="add-item" id="myadd">
+                                <div id="add-btn">
+                                    <span class="fa fa-plus-square-o fa-5x" style="line-height: 300px; color: #444;"></span>
+                                </div>
+                                
+                            </li>
                         </ul>
-                        <div class="add-item">
-                            <div style="margin:10px; border:solid 1px #ccc;">
-                                <span class="fa fa-plus-square-o fa-5x" style="line-height: 300px; color: #444;"></span>
-                            </div>
-                            <div id="add-form">
-                                <div>
-                                    <span>Title</span>
-                                    <input type="text">
-                                </div>
-                                <div>
-                                    <span>ImageUrl</span>
-                                    <input type="text">
-                                </div>
-                                <div style="margin-left:80px; margin-top:20px;">
-                                    <button>Cancel</button>
-                                    <button>OK</button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
-            <!-- <hr/>
-            <h4>
-                &copy Display 
-            </h4>  -->
+           
         </div>
-    </body>
+        <div id="mask" class="hidden">
+
+        
+            <div id="add-form" >
+                <div>
+
+                    <div class="form-item">
+                        <span>Title</span>
+                        <input type="text" id="imgTitle">
+                    </div>
+                    <div class='form-item'>
+                        <span>ImageUrl</span>
+                        <input type="text" id="imgUrl">
+                    </div>
+                    <div class='form-item'>
+                            <span>Local</span>
+                                <input type="file" id="localImg" style="background-color: white;">
+                            
+                        </div>
+                    <div class='form-item' style="margin-left:28px; margin-top:20px;">
+                            <button id="cancel">Cancel</button>
+                            <button id="submit">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </body>
+    <script>
+        $(function() {
+            var $addBtn = $('#add-btn');
+            $addBtn.on('click', function(e) {
+                var $this = $(e.target);
+                
+                // e.preventDefault();
+                e.stopPropagation();
+                var $addForm = $('#mask');
+                $addForm.removeClass('hidden');
+                $addBtn.attr('style', 'cursor: auto;');
+            })
+
+            var $submit = $('#submit'),
+                $cancel = $('#cancel'),
+                $catalogs = $('#catalogs');
+           
+
+            $submit.on('click', function(e) {
+                var $this = $(e.target);
+                var imageUrl = $("#imgUrl").val(),
+                    imageTitle = $('#imgTitle').val();
+                if (!imageUrl || !imageTitle) {
+                    return;
+                }
+                $.ajax({
+                    url: '/api/main/addcatalogs',
+                    type: 'post',
+                    data: {'imgUrl': imageUrl, 'type': imageTitle},
+                    dataType: 'json',
+                    success: function(res) {
+                        var catalogs = res.data;
+                        showCatalogs(catalogs, $('#catalogs'), $('#menus'));
+                    }, error: function(err) {
+
+                    }
+                })
+
+                /** 
+                 * temp
+                 */
+                showCatalogs([{'image': imageUrl, 'title': imageTitle}], $('#catalogs'), $('#menus'));
+
+                 var $addForm = $('#mask');
+                $addForm.addClass('hidden');
+            })
+            $cancel.on('click', function(){
+                var $addForm = $('#mask');
+                $addForm.addClass('hidden');
+            })
+            function showCatalogs(catalogs, $catalogs, $menus) {
+                var liDom, divDom, imgDom, spanDom;
+                var menuLiDom, menuADom;
+                catalogs.forEach(function(item,index) {
+                    liDom = document.createElement('li');
+                    liDom.setAttribute('data-id', item['id']);
+
+                    divDom = document.createElement('div');
+                    divDom.setAttribute('class', 'catalog');
+
+                    imgDom = document.createElement('img');
+                    imgDom.setAttribute('src', item['image']);
+                    imgDom.setAttribute('alt', item['title']);
+
+                    spanDom = document.createElement('span');
+                    spanDom.innerText = item['title'];
+
+                    divDom.appendChild(imgDom);
+                    divDom.appendChild(spanDom);
+
+                    liDom.append(divDom);
+
+                    $(liDom).insertBefore('#myadd');
+
+                    menuLiDom = document.createElement('li');
+                    menuLiDom.setAttribute('data-id', item['id']);
+
+                    menuADom = document.createElement('a');
+                    menuADom.innerText = item['title'];
+
+                    menuLiDom.appendChild(menuADom);
+
+                    $menus.append($(menuLiDom));
+                })
+            }
+            showCatalogs([{'image': '../images/3.jpg', 'title': 'Women\'s Clothes'}], $('#catalogs'), $('#menus'));
+        })
+    </script>
 </html>
