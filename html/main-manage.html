@@ -3,6 +3,7 @@
         <meta charset='utf-8'>
         <title>manage Main page</title>
         <script src="../js/jquery-3.3.1.min.js"></script>
+        <script src="../js/jquery-ui.min.js"></script>
         <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
         <style>
             body {
@@ -378,6 +379,12 @@
                 })
             }
             showCatalogs([{'image': '../images/3.jpg', 'title': 'Women\'s Clothes'}], $('#catalogs'), $('#menus'));
+            showCatalogs([{'image': '../images/4.jpg', 'title': 'Women\'s Clothes'}], $('#catalogs'), $('#menus'));
+
+            showCatalogs([{'image': '../images/5.jpg', 'title': 'Women\'s Clothes'}], $('#catalogs'), $('#menus'));
+            showCatalogs([{'image': '../images/6.jpg', 'title': 'Women\'s Clothes'}], $('#catalogs'), $('#menus'));
+            $('#catalogs').sortable();
+            $('#catalogs').disableSelection();
         })
     </script>
 </html>
