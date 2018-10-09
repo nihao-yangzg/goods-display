@@ -99,7 +99,7 @@
                 transition: border-color 0.15s ease-in-out;
             }
             .catalog span {
-                display:block;
+                /* display:block; */
                 color: #123456;
                 font-size: 14px;
                 margin-top: 5px;
@@ -127,7 +127,8 @@
             #mask {
                 width: 100%;
                 height: 100%;
-                position: absolute;
+                overflow: hidden;
+                position: fixed;
                 top:0; left:0; bottom:0; right:0;
                 background-color:rgba(4,4,4, 0.4);
             }
@@ -155,17 +156,18 @@
             }
             #add-form>div {
                 /* margin-top: 120px; */
-                vertical-align: middle;
+                /* vertical-align: middle; */
                 margin-top: 80px;
                 position: relative;
                 
             }
             #add-form div{
                 height: 35px;
-                line-height: 35px;
+                /* line-height: 35px; */
                 /* margin:10px; */
-                text-align: center;
+                /* text-align: center; */
                 vertical-align: middle;
+                margin-left: 20px;
             }
             #add-form input{
                 width: 200px;
@@ -192,6 +194,29 @@
             /* .form-item {
                 margin-bottom:30px;
             } */
+            .file {
+                position: relative;
+                display: inline-block;
+                background-color: white;
+                border: 1px solid #ccc;
+                padding: 4px 12px;
+                overflow: hidden;
+                text-decoration: none;
+                /* text-indent: 0; */
+                
+
+                
+            }
+            .file input {
+                position: absolute;/*相对定位*/
+                right: 0;
+                top: 0;
+                opacity: 0;/*将上传组件设置为透明的*/
+                font-size: 100px;
+            }
+            .file:hover {
+                text-decoration: none;
+            }
         </style>
     </head>
 
@@ -236,15 +261,16 @@
                         <input type="text" id="imgTitle">
                     </div>
                     <div class='form-item'>
-                        <span>ImageUrl</span>
+                        <span>Url</span>
                         <input type="text" id="imgUrl">
                     </div>
                     <div class='form-item'>
-                            <span>Local</span>
+                            <span style="line-height:30px; overflow: hidden;">File</span>
+                            <a class='file'>选择文件
                                 <input type="file" id="localImg" style="background-color: white;">
-                            
+                            </a>
                         </div>
-                    <div class='form-item' style="margin-left:28px; margin-top:20px;">
+                    <div class='form-item' style="margin-left:105px; margin-top:20px;">
                             <button id="cancel">Cancel</button>
                             <button id="submit">OK</button>
                     </div>
@@ -315,12 +341,26 @@
                     imgDom = document.createElement('img');
                     imgDom.setAttribute('src', item['image']);
                     imgDom.setAttribute('alt', item['title']);
+                    
+                    input = document.createElement('input');
+                    input.setAttribute('type', 'checkbox');
 
-                    spanDom = document.createElement('span');
+                    spanDom = document.createElement('a');
                     spanDom.innerText = item['title'];
+                    // adom1 = document.createElement('a');
+                    // adom1.innerText = 'edit';
+                    // adom2 = document.createElement('a');
+                    // adom2.innerText = 'delete';
+                   
+
+                    divDom1 = document.createElement('div');
+                    label = document.createElement('label');
+                    label.appendChild(input);
+                    label.appendChild(spanDom);
+                    divDom1.appendChild(label);
 
                     divDom.appendChild(imgDom);
-                    divDom.appendChild(spanDom);
+                    divDom.appendChild(divDom1);
 
                     liDom.append(divDom);
 
