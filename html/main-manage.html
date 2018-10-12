@@ -62,6 +62,20 @@
                 float:left;
                 margin-bottom:40px;
             }
+            .catalog-action {
+                margin-left: 20%;
+                width: 80%;
+                float:left;
+                margin-bottom:40px;
+                
+            }
+            button.full{
+                height: 40px;
+                margin:20px;
+                width: 100%;
+                background-color: white;
+                border: solid 1px #ccc;
+            }
             .main {
                 
                 width: 100%;
@@ -184,22 +198,35 @@
                 width: 80px;
                 /* float:left; */
             }
-            #add-form button {
+            button {
                 background-color: white;
-                border:solid 1px #ccc;
+                border:solid 1px #123456;
                 height: 30px;
                 width: 70px;
                 line-height: 30px;
                 cursor: pointer;
+                color: #123456;
+                transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out, background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            }
+            button.ok {
+                background-color: #123456;
+                color:white;                
+            }
+            button.ok:hover{
+                box-shadow: 0 0 0px 1px rgba(18,52,86,0.5);
+                /* background-color:rgba(18,52,86,0.7); */
+            }
+            button.cancel:hover {
+                box-shadow: 0 0 0px 1px rgba(18,52,86,0.5);
             }
             /* .form-item {
                 margin-bottom:30px;
             } */
-            .file {
+            .upload {
                 position: relative;
                 display: inline-block;
                 background-color: white;
-                border: 1px solid #ccc;
+                border: 1px solid #aaa;
                 padding: 4px 12px;
                 overflow: hidden;
                 text-decoration: none;
@@ -208,15 +235,21 @@
 
                 
             }
-            .file input {
+            .upload input {
                 position: absolute;/*相对定位*/
                 right: 0;
                 top: 0;
                 opacity: 0;/*将上传组件设置为透明的*/
                 font-size: 100px;
             }
-            .file:hover {
+            .upload:hover {
                 text-decoration: none;
+            }
+            span.errorTip,
+            span.showFileName {
+                /* overflow: hidden; */
+                font-size: 8px;
+                /* line-height:30px; */
             }
         </style>
     </head>
@@ -236,17 +269,19 @@
                 <div class="catalog-main">
                     <div class="main">
                         <ul id="catalogs">
-                            
-
-                        
                             <li class="add-item" id="myadd">
                                 <div id="add-btn">
                                     <span class="fa fa-plus-square-o fa-5x" style="line-height: 300px; color: #444;"></span>
                                 </div>
-                                
                             </li>
                         </ul>
                     </div>
+                     <div>
+                    
+                </div>
+                </div>
+                <div class="catalog-action">
+                    <button class="full">delete</button>
                 </div>
             </div>
            
@@ -266,14 +301,16 @@
                         <input type="text" id="imgUrl">
                     </div>
                     <div class='form-item'>
-                            <span style="line-height:30px; overflow: hidden;">File</span>
-                            <a class='file'>选择文件
-                                <input type="file" id="localImg" style="background-color: white;">
-                            </a>
+                        <span style="line-height:30px; overflow: hidden;">File</span>
+                        <a class='upload'>选择文件
+                            <input type="file" id="localImg" style="background-color: white;">
+                        </a>
+                        <span class="tip errorTip" style="text-align:left; width:100px; overflow: hidden; line-height: 30px;"></span>
+                        <span class="tip showFileName" style="text-align:left; width: 100px; overflow: hidden; line-height: 30px;"></span>
                         </div>
                     <div class='form-item' style="margin-left:105px; margin-top:20px;">
-                            <button id="cancel">Cancel</button>
-                            <button id="submit">OK</button>
+                        <button class='cancel' id="cancel">Cancel</button>
+                        <button class='ok' id="submit">OK</button>
                     </div>
                 </div>
             </div>
@@ -295,7 +332,17 @@
             var $submit = $('#submit'),
                 $cancel = $('#cancel'),
                 $catalogs = $('#catalogs');
-           
+            var $edit = $('#catalogs');
+            $edit.on('click', function(e) {
+                var target  = e.target;
+                var $this = $(target);
+                console.log(target.nodeName);
+                if (target.nodeName === 'IMG') {
+                    var title = $this.parent('.catalog').find('label').children('a').text();
+                    console.log(title);
+                    showModal({'title':title});
+                }
+            })
 
             $submit.on('click', function(e) {
                 var $this = $(e.target);
@@ -322,13 +369,30 @@
                  */
                 showCatalogs([{'image': imageUrl, 'title': imageTitle}], $('#catalogs'), $('#menus'));
 
-                 var $addForm = $('#mask');
-                $addForm.addClass('hidden');
+                hideModal();
             })
             $cancel.on('click', function(){
-                var $addForm = $('#mask');
-                $addForm.addClass('hidden');
+                hideModal();
             })
+            function clearModal() {
+                $('#imgTitle').val('');
+                $('#imgUrl').val('');
+                $('#localImg').val('');
+                $('#mask span.tip').empty();
+            }
+            function showModal(item) {
+                var $modal = $("#mask");
+                $modal.removeClass('hidden');
+                var $titleInput = $modal.find('#imgTitle');
+                $titleInput.val(item.title ? item.title: '');
+                // $titleInput.focus();
+                $titleInput.select();
+            }
+            function hideModal() {
+                clearModal();
+                var $modal = $('#mask');
+                $modal.addClass('hidden');
+            }
             function showCatalogs(catalogs, $catalogs, $menus) {
                 var liDom, divDom, imgDom, spanDom;
                 var menuLiDom, menuADom;
@@ -379,12 +443,31 @@
                 })
             }
             showCatalogs([{'image': '../images/3.jpg', 'title': 'Women\'s Clothes'}], $('#catalogs'), $('#menus'));
-            showCatalogs([{'image': '../images/4.jpg', 'title': 'Women\'s Clothes'}], $('#catalogs'), $('#menus'));
+            showCatalogs([{'image': '../images/4.jpg', 'title': 'Men\'s Clothes'}], $('#catalogs'), $('#menus'));
 
-            showCatalogs([{'image': '../images/5.jpg', 'title': 'Women\'s Clothes'}], $('#catalogs'), $('#menus'));
-            showCatalogs([{'image': '../images/6.jpg', 'title': 'Women\'s Clothes'}], $('#catalogs'), $('#menus'));
+            showCatalogs([{'image': '../images/5.jpg', 'title': 'Underclothes'}], $('#catalogs'), $('#menus'));
+            showCatalogs([{'image': '../images/6.jpg', 'title': 'Women\'s shoes'}], $('#catalogs'), $('#menus'));
             $('#catalogs').sortable();
             $('#catalogs').disableSelection();
+
+
+            $("a.upload").on("change","input[type='file']",function(){
+                var filePath=$(this).val();
+                if(filePath.indexOf("jpg")!=-1 || filePath.indexOf("png")!=-1){
+                    $(".errorTip").html("").hide();
+                    var arr=filePath.split('\\');
+                    var fileName=arr[arr.length-1];
+                    var fLength = fileName.length;
+                    if (fLength > 10) {
+                        fileName = fileName.substring(0, 5) + '...' + fileName.substring(fLength - 5,fLength);
+                    }
+                    $(".showFileName").html(fileName);
+                }else{
+                    $(".showFileName").html("");
+                    $(".errorTip").html("文件类型有误！").show();
+                    return false 
+                }
+            })
         })
     </script>
 </html>
