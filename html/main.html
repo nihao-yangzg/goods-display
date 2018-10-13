@@ -3,16 +3,10 @@
         <meta charset="utf-8">
         <title>Main</title>
         <script src="../js/jquery-3.3.1.min.js"></script>
-        <!-- <script src="../js/menu.js"></script> -->
-        <!-- <script src="../js/select2.min.js"></script> -->
-        <!-- <script src="../js/item.js"></script> -->
-        <!-- <script src="../js/pager.js"></script> -->
-        <!-- <script src="../js/index.js"></script> -->
-        <!-- <link rel="stylesheet" href="../css/style.css" type="text/css"> -->
-        <!-- <link rel="stylesheet" href="../css/item.css" type="text/css"> -->
-        <!-- <link rel="stylesheet" href="../css/select2.css" type="text/css"> -->
-        <!-- <link rel="stylesheet" href="../css/page.css"> -->
-        <!-- <link rel="stylesheet" href="../css/index.css"> -->
+        <script src="../js/item.js"></script>
+        <script src="../js/menu.js"></script>
+        <link rel="stylesheet" href="../css/style.css" type="text/css">
+        <link rel="stylesheet" href="../css/item.css" type="text/css">
         <style>
             body {
                 background-color: #fff;
@@ -20,7 +14,6 @@
             .header {
                 width: 100%;
                 height: 80px;
-                /* background-image: url('../images/senlin.jpg'); */
                 background-color: #123456;
                 position:fixed;
                 top:0;
@@ -122,12 +115,12 @@
         </style>
     </head>
     <body> 
-        <div class="header">
+        <!-- <div class="header">
             <h3>
                 Enjoy Your Life
             </h3>
-        </div>
-        <div class="container">
+        </div> -->
+        <div class="top10-container">
             <div class="content">
                 <div class="catalog-menu">
                    <ul id="menus">
@@ -234,6 +227,19 @@
                 })
             }
             showCatalogs(catalogs, $catalogs, $menus);
+
+            $('#menus, #catalogs').on('click', function(e){
+                var target = e.target;
+                var $target = $(target);
+                console.log(target.nodeName);
+                var catalogId ;
+                if (target.nodeName === 'LI') {
+                    catalogId = $target.attr('data-id');
+                } else {
+                    catalogId = $target.parents('li[data-id]').attr('data-id');
+                }
+                window.open('/html/index.html?catalogId=' + catalogId);
+            })
         })
     </script>
 </html>

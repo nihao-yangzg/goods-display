@@ -1,18 +1,18 @@
 
-.content-display ul li div.goods-subcontainer{
+/* .content-display ul li div.goods-subcontainer{
     border: dotted 1px #cccccc;
     
-}
+} */
 .content-display ul li div.goods-container{
-    border: dotted 3px #ffffff;
+    border: dotted 1px #ccc;
     margin:10px;
 }
-.content-display ul li div.goods-subcontainer:hover{
+/* .content-display ul li div.goods-subcontainer:hover{
     border: dotted 1px #ffffff;
     
-}
+} */
 .content-display ul li div.goods-container:hover {
-    border: solid 3px #e03737;
+    border: solid 1px #e03737;
     transition: 0.5s;
 }
 

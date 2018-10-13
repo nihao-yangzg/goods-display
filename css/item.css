@@ -9,7 +9,7 @@
     /* border:0.5px #999999 solid;  */
 } 
 .dropdown:hover .dropbtn { /*鼠标移上去，改变背景颜色*/
-    background-color: #111;
+    background-color: rgba(18,52,86,0.3);
 }
 .dropdown {
     /*display:inline-block将对象呈递为内联对象，但是对象的内容作为块对象呈递。旁边的内联对象会被呈递在同一行内，允许空格。*/
@@ -21,6 +21,7 @@
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    opacity: 0.9;
 }
 .dropdown-content a {
     display: block;
@@ -28,8 +29,6 @@
     padding: 10px 15px;
     text-decoration:none;
 }
-
-
 .dropdown-content a:hover {
     background-color: #a1a1a1;
 }

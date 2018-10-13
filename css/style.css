@@ -6,7 +6,10 @@ body { /*设置内容与浏览器边框无间距*/
 }
 
 
-.fix-container {
+.fix-container,
+.general-container,
+.top10-container,
+.container {
     position:absolute;
     /* text-align: center; */
     width: 1141px;
@@ -15,9 +18,18 @@ body { /*设置内容与浏览器边框无间距*/
     position: absolute;
     left:0;
     right:0;
+    
+}
+.general-container{
+    top: 0px;
+}
+.top10-container{
+    top: 10px;
+}
+.fix-container {
     top: 300px;
 }
- @media screen and (max-width: 980px) {
+ /* @media screen and (max-width: 980px) {
     .container {
         padding-left:10px;
         padding-right:10px;
@@ -35,19 +47,18 @@ body { /*设置内容与浏览器边框无间距*/
     .container {
         padding-left: 20%;
         padding-right: 20%;
-        /* min-width: 1000px; */
     }
 }
 @media screen and (min-width: 1701px) {
     .container {
         padding-left: 20%;
         padding-right: 20%;
-        /* min-width: 1000px; */
     }
-} 
+}  */
 .nav {
     margin: 0;
-    background-color: rgba(10, 10, 10, 1);
+    /* background-color: rgba(10, 10, 10, 1); */
+    background-color: #123456;
     height: 60px;
     position: fixed;
     right: 0;
@@ -55,10 +66,16 @@ body { /*设置内容与浏览器边框无间距*/
     top:0;
     z-index:1000;
 }
-/* .fixed{
-    position: fixed;
+.fixed{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    width: 1141px;
+    height: 60px;
+    margin:auto;
     
-} */
+}
 .nav ul {
     float:right;
     margin: 0;
@@ -85,7 +102,8 @@ body { /*设置内容与浏览器边框无间距*/
 }
 
 .nav ul li a:hover { /*鼠标移上去，改变背景颜色*/
-    background-color: #111;
+    /* background-color: #111; */
+    background-color: rgba(18,52,86,0.3);
 }
 
 .subnav {
@@ -116,7 +134,8 @@ body { /*设置内容与浏览器边框无间距*/
 .content .content-display{
     float:left;
     /* display:inline-block; */
-    width:80%;
+    /* width:80%; */
+    width: 100%;
 
     margin-bottom: 40px;
 }
@@ -134,7 +153,8 @@ body { /*设置内容与浏览器边框无间距*/
     list-style-type: none;
     position: relative;
     /* height: 240px; */
-    width:33.3%;
+    /* width:33.3%; */
+    width:25%;
     min-width:240px;
     margin:0;
     float:left;
@@ -143,7 +163,7 @@ body { /*设置内容与浏览器边框无间距*/
 }
 
 .content-display ul li:nth-child(3n+1) {
-    clear:left;
+    clear:none;
 }
 .content-display ul li:nth-child(3n+2) {
     clear:none;
@@ -154,12 +174,9 @@ body { /*设置内容与浏览器边框无间距*/
 }
 .content-display ul li div{
     
-    margin-right:15px;
-    margin-left:15px;
-    /* height: 240px; */
-    /* width:100%; */
+    margin-right:5px;
+    margin-left:5px;
     text-align: left;
-    border: 0.2px #ccc dotted;
 }
 .content-display ul li img{
     height:100%;

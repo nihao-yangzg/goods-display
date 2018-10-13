@@ -26,7 +26,7 @@
     
 }
 .manage.content-display ul li div.goods-container:hover {
-    border: solid 3px #e03737;
+    border: solid 3px #123456;
     transition: 0.5s;
 }
 .manage.content-display ul li.last {
@@ -85,4 +85,19 @@ span.edit {
     color: rgb(41, 226, 41);
     margin: 10px;
     cursor: pointer;
+}
+
+.add-goods {
+    text-align: center;
+    border:solid 1px #ccc;
+    transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    height: 50px;
+    cursor: pointer;
+}
+.add-goods>span{
+    line-height: 50px;
+    color: #123456;
+}
+.add-goods:hover{
+    box-shadow: 0 0 1px 1px #123456;
 }

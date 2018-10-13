@@ -73,7 +73,7 @@ var userinfo = {
     'emailAddr': 'abcd@email.com'
 };
 $.ajax({
-    url: '/usr/info',
+    url: '/api/user/userinfo',
     type: 'get',
     success: function(res){
 

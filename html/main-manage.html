@@ -1,18 +1,20 @@
 <html>
     <head>
         <meta charset='utf-8'>
-        <title>manage Main page</title>
+        <title>Main Manage</title>
         <script src="../js/jquery-3.3.1.min.js"></script>
         <script src="../js/jquery-ui.min.js"></script>
+        <script src="../js/manage-menu.js"></script>
         <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="../css/manage-menu.css">
+        <link rel="stylesheet" href="../css/modal.css">
         <style>
             body {
                 background-color: #fff;
             }
-            .header {
+            /* .header {
                 width: 100%;
                 height: 80px;
-                /* background-image: url('../images/senlin.jpg'); */
                 background-color: #123456;
                 position:fixed;
                 top:0;
@@ -20,7 +22,7 @@
                 text-align: center;
                 color:#aaa;
                 z-index: 1000;
-            }
+            } */
             .container {
                 position:absolute;
                 margin:auto;
@@ -43,19 +45,24 @@
             }
             .catalog-menu li {
                 list-style:none;
-                padding-top: 10px;
-                padding-left: 40px;
-                padding-bottom: 10px;
+                /* padding-left: 40px; */
                 cursor: pointer;
                 position:relative;
-                height: 30px;
-                line-height:30px;
+                
                 border-bottom: solid 1px #aaa;
             }
             .catalog-menu li:hover {
                 background-color: #123456;
                 color:white;
 
+            }
+            .catalog-menu a {
+                text-decoration: none;
+                color: black;
+                display: block;
+                padding:10px 40px;
+                height: 30px;
+                line-height:30px;
             }
             .catalog-main {
                 width: 80%;
@@ -69,12 +76,25 @@
                 margin-bottom:40px;
                 
             }
+            .half-container {
+                margin: 0 10px;
+            }
             button.full{
                 height: 40px;
-                margin:20px;
+                /* margin:20px; */
                 width: 100%;
-                background-color: white;
-                border: solid 1px #ccc;
+                font-size: 16px;
+            }
+            .half{
+                width: 50%;
+                font-size: 16px;
+                /* display: inline-block; */
+                float:left;
+            }
+            button.outstanding {
+                background-color: #123456;
+                color: white;
+                /* border: solid 1px rgba(18,52,86,0.5); */
             }
             .main {
                 
@@ -112,6 +132,7 @@
                 text-align: center;
                 padding-top:10px;
                 transition: border-color 0.15s ease-in-out;
+                height: 341px;
             }
             .catalog span {
                 /* display:block; */
@@ -120,23 +141,23 @@
                 margin-top: 5px;
                 margin-bottom: 5px;
             }
-            .catalog:hover{
+            .catalog:hover,
+            #add-btn:hover {
                 border-color: #123456;
                 cursor:pointer;
             }
 
             .add-item {
-                width: 50%;
-                height: 300px;
-                /* line-height: 300px; */
                 text-align: center;
-                /* cursor:pointer; */
                 position: relative;
             }
             #add-btn {
                 cursor: pointer;
+                height: 341px;
+                padding-top:10px;
                 margin:10px;
-                border:solid 1px #ccc;
+                transition: border-color 0.15s ease-in-out;
+                border:solid 1px #eee;
             }
 
             #mask {
@@ -158,29 +179,18 @@
                 width: 400px;
                 height: 300px;
                 z-index: 1000;
-                /* display:none; */
                 background-color: white;
-                /* padding-bottom:80px; */
-                /* height: 300px; */
-                /* vertical-align: middle; */
-                /* padding-top:80px; */
-                /* text-align: right; */
             }
             .hidden {
                 display: none;
             }
             #add-form>div {
-                /* margin-top: 120px; */
-                /* vertical-align: middle; */
                 margin-top: 80px;
                 position: relative;
                 
             }
             #add-form div{
                 height: 35px;
-                /* line-height: 35px; */
-                /* margin:10px; */
-                /* text-align: center; */
                 vertical-align: middle;
                 margin-left: 20px;
             }
@@ -189,14 +199,12 @@
                 height: 30px;
                 padding-left: 10px;
                 outline: none;
-                /* margin: 10px; */
 
             }
             #add-form span{
                 display:inline-block;
                 text-align: right;
                 width: 80px;
-                /* float:left; */
             }
             button {
                 background-color: white;
@@ -212,16 +220,9 @@
                 background-color: #123456;
                 color:white;                
             }
-            button.ok:hover{
-                box-shadow: 0 0 0px 1px rgba(18,52,86,0.5);
-                /* background-color:rgba(18,52,86,0.7); */
-            }
-            button.cancel:hover {
+            button:hover{
                 box-shadow: 0 0 0px 1px rgba(18,52,86,0.5);
             }
-            /* .form-item {
-                margin-bottom:30px;
-            } */
             .upload {
                 position: relative;
                 display: inline-block;
@@ -231,9 +232,6 @@
                 overflow: hidden;
                 text-decoration: none;
                 /* text-indent: 0; */
-                
-
-                
             }
             .upload input {
                 position: absolute;/*相对定位*/
@@ -255,11 +253,6 @@
     </head>
 
     <body>
-        <div class="header">
-            <h3>
-                Enjoy Your Life
-            </h3>
-        </div>
         <div class="container">
             <div class="content">
                 <div class="catalog-menu">
@@ -281,7 +274,16 @@
                 </div>
                 </div>
                 <div class="catalog-action">
-                    <button class="full">delete</button>
+                    <div class="half">
+                        <div class="half-container">
+                            <button class="full" id="final-delete">Delete</button>
+                        </div>
+                    </div>
+                    <div class="half">
+                        <div class="half-container">
+                            <button class="full outstanding" id='final-submit'>Submit</button>
+                        </div>
+                    </div>
                 </div>
             </div>
            
@@ -315,6 +317,7 @@
                 </div>
             </div>
         </div>
+        
         </body>
     <script>
         $(function() {
@@ -412,11 +415,6 @@
 
                     spanDom = document.createElement('a');
                     spanDom.innerText = item['title'];
-                    // adom1 = document.createElement('a');
-                    // adom1.innerText = 'edit';
-                    // adom2 = document.createElement('a');
-                    // adom2.innerText = 'delete';
-                   
 
                     divDom1 = document.createElement('div');
                     label = document.createElement('label');
@@ -436,6 +434,8 @@
 
                     menuADom = document.createElement('a');
                     menuADom.innerText = item['title'];
+                    menuADom.setAttribute('target', '_blank');
+                    menuADom.setAttribute('href', '/html/manage.html?typeId=' + item['id']);
 
                     menuLiDom.appendChild(menuADom);
 
@@ -468,6 +468,109 @@
                     return false 
                 }
             })
+            /**
+              * duplicated
+              */
+            // $('#final-delete').on('click', function(e) {
+            //     var $checkboxies = $('#catalogs').find('input[type=checkbox]');
+            //     var $target;
+            //     if ($checkboxies.length > 0) {
+                    
+            //         $checkboxies.each(function(index, item) {
+            //             console.log($(item).is(':checked'));
+            //             if ($(item).is(':checked')) {
+            //                 console.log($checkboxies.length);
+            //                 var title = $(item).siblings('a').text();
+            //                 $target = $(item).parents('li[data-id]');
+                            
+            //                 $target.remove();
+            //                 _deleteMenuItem(title);
+            //             }
+            //         })
+            //     }
+            // })
+            $('#final-delete').on('click', function(e) {
+                var $checkboxies = $('#catalogs').find('input[type=checkbox]');
+                var targets = [], id;
+                if ($checkboxies.length > 0) {
+                    $checkboxies.each(function(index, item) {
+                        if ($(item).is(':checked')) {
+                            id = $(item).parents('li[data-id]').attr('data-id');
+                            if (id) {
+                                targets.push({'id': id});
+                            }
+                        }
+                    });
+                    deleteCatalogs(targets);
+                }
+            })
+            function _deleteCatalogs(catalogIds) {
+                if (catalogIds && catalogIds.length) {
+                    $.ajax({
+                        url: '/api/catalogs/delete',
+                        data: catalogsIds,
+                        dataType: 'json',
+                        type: 'POSt',
+                        success: function(res) {
+                            refreshCatalogs();
+                        },
+                        error: function(res) {
+
+                        }
+                    })
+                }
+            }
+            function refreshCatalogs() {
+                $.ajax({
+                    url: '/api/catalogs/all',
+                    dataType: 'json',
+                    type: 'GET',
+                    success: function(res) {
+                        showCatalogs(res.data, $('#catalogs'), $('#menus'));
+                    }
+                })
+            }
+            function _deleteMenuItem(value) {
+                if (!value) {
+                    return;
+                }
+                var $menu = $("#menus").find('li[data-id]');
+                var $a;
+                $menu.each(function(index, item) {
+                    
+                    $a = $(item).children('a');
+                    if ($a[0].innerText === value) {
+                        $(item).remove();
+                    }
+                })
+            }
+
+            $('#final-submit').on('click', function(e) {
+                var $items = $('#catalogs').children('li[data-id]');
+                var data = [], element;
+                $items.each(function(index, item) {
+                    element.id = $(item).attr('data-id');
+
+                    element.index = index + 1;
+                    if (element.id) {
+                        data.push(data);
+                    }
+                })
+                $.ajax({
+                    url: '/api/catalogs/order/edit',
+                    data: data,
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function(res) {
+                        refreshCatalogs();
+                    },
+                    error: function(err) {
+
+                    }
+                })
+            })
+           
+            
         })
     </script>
 </html>

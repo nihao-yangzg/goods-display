@@ -1,13 +1,14 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Display</title>
+        <title>Index</title>
         <script src="../js/jquery-3.3.1.min.js"></script>
         <script src="../js/menu.js"></script>
         <script src="../js/select2.min.js"></script>
         <script src="../js/item.js"></script>
         <script src="../js/pager.js"></script>
         <script src="../js/index.js"></script>
+        <script src="../js/utils.js"></script>
         <link rel="stylesheet" href="../css/style.css" type="text/css">
         <link rel="stylesheet" href="../css/item.css" type="text/css">
         <link rel="stylesheet" href="../css/select2.css" type="text/css">
@@ -15,7 +16,7 @@
         <link rel="stylesheet" href="../css/index.css">
         <style>
             .page-foot {
-                padding-left: 20%;
+                padding-left: 20px;
             }
             .main-foot{
                 height: 60px;
@@ -28,16 +29,53 @@
                 left: 0;
                 width:100%;
             }
+            .brand-select{
+                width: 100%;
+                
+            }
+            .sorted{  
+                background:white;  
+                height:28px;  
+                width:180px;  
+                line-height:28px;  
+                border:1px solid #ccc;  
+                -moz-border-radius:2px;  
+                -webkit-border-radius:2px;  
+                border-radius:2px;  
+            }
+            .select2-container--default .select2-selection--single{
+                border-radius: 2px;
+            }
         </style>
     </head>
     <body>
-        <div class="subnav container">
+        <div class="subnav">
             SLOGEN / PICTURE
         </div>
 
         <div class="fix-container">
+            <div class="">
+                
+                
+            </div>
             <div class="content">
-                <div class="content-search">
+                    <div class="" style="display:block; ">
+                        <div style="width: 200px; display:inline-block; ">
+                            <select class="brand-select" name="state" style="height:50%;" id="brand-list">
+                                
+                            </select>
+                        </div>
+                        <div class=""  style="float:right;">
+                            <div style="width: 150px;">
+                                <select class="sorted" name="state">
+                                    <option value="">select sort rule</option>
+                                    <option value="ascent">price ascend</option>
+                                    <option value="descend">price descend</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                <!-- <div class="content-search">
                     <div class="sub-search">
                         <h3>BRAND</h3>
                         <div>
@@ -61,7 +99,7 @@
                         </div>
                     </div>
                     
-                </div>
+                </div> -->
                 <div class="content-display">
                     <div class="goods">
                         <ul id="goods-list">
@@ -69,29 +107,75 @@
                     </div>
                 </div>
                 <div class="page-foot">
-
                 </div>
-
             </div>
+           
+
             <hr/>
             <div class="main-foot">
-                    <span>&copy Display System </span>
-                </div>
+                <span>&copy Display System </span>
+            </div>
         </div>
-        
-       
     </body>
     <script>
         $(function(){
-            
+            var _testBrand = [
+                {'value': 'Adidas', 'id': 1},
+                {'value': 'Nike', 'id': 2},
+                {'value': 'Lining', 'id': 3},
+                {'value': 'Anta', 'id': 4},
+            ];
+            createBrandSelect(_testBrand);
+            function getBrandList(catalogId) {
+                if (catalogId) {
+                    $.ajax({
+                        url: '/api/brand/all?catalogId=' + catalogId,
+                        type: 'get',
+                        dataType: 'json',
+                        success: function(res) {
+                            createBrandSelect(res.data);
+                        },
+                        error: function(err){
+
+                        }
+                    })
+                }
+            }
+            function createBrandSelect(data) {
+                var optionDom;
+                if (data && data.length) {
+                    var $brandList = $('#brand-list');
+                    data.forEach(function(item,index){
+                        optionDom = document.createElement('option');
+                        optionDom.setAttribute('value', item['value']);
+                        optionDom.innerText = item['value'];
+                        $brandList.append($(optionDom));
+                    })
+                }
+            }
             $('.brand-select').val("").select2({
                 placeholder: "Select a brand",
                 allowClear: true
             });
-            $('.product-select').val("").select2({
-                placeholder: "Select a type",
-                allowClear: true
+
+            $('.brand-select').on('change', function(e){
+                var brandId = $(this).val();
+                var catalogId = getItemFromUrl('catalogId');
+                $.ajax({
+                    url: '/api/goods/search?brandId=' + brandId + '&catalogId=' + catalogId,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(res) {
+
+                    }, error: function(err) {
+
+                    }
+                })
             })
+            // $('.sorted').val("").select2({
+            //     placeholder: "Sorted by",
+            //     allowClear: true
+            // })
             function getGoodsByPage(page) {
                 if (page > 0) {
                     $.ajax({
@@ -100,16 +184,13 @@
                         dateType: 'json',
                         success: function(res) {
                             console.log(res.data);
-                            
                         },
                         error: function(err) {
                             console.log(err.responseText);
                         }
-
                     })
                 }
             }
-            
             var goodslist = [
                 {'imgUrl': '../images/a.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewata', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
                 {'imgUrl': '../images/b.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewatb', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
