@@ -15,7 +15,6 @@ body {
  .header {
     width: 100%;
     height: 80px;
-    /* background-image: url('../images/senlin.jpg'); */
     background-color: #123456;
     position:fixed;
     top:0;
@@ -32,9 +31,6 @@ body {
     left:0;
     right:0;
     margin:auto;
-
-    /* padding-left: 20%;
-    padding-right: 20%; */
 }
 
 .header .title {
@@ -327,14 +323,6 @@ button.outstanding {
     width:225px;
     max-height: 300px;
 }
-/* .detail {
-    display:none;
-    position: absolute;
-    left: 100%;
-    top: -6px;
-    width: 600px;
-    background-color:white;
-} */
 .catalog {
     border: solid 1px #eee;
     text-align: center;
@@ -461,10 +449,6 @@ span.showFileName {
 /*****************************************************************
  *                           manage.html
  *****************************************************************/
- body { /*设置内容与浏览器边框无间距*/
-
-}
-
 .fix-container {
     position:absolute;
     /* text-align: center; */
@@ -495,28 +479,25 @@ span.showFileName {
     float:right;
     margin: 0;
     /* padding: 0; */
-    list-style-type: none; /*去除li前的标注*/
+    list-style-type: none; 
     height:60px;
-    overflow: hidden; /*隐藏溢出的部分，保持一行*/
+    overflow: hidden; 
 }
 .nav li {
-    float: left; /*左浮动*/
+    float: left; 
     height:60px;
     
 }
 .nav li a {
-    display: inline-block; /*设置成块*/
+    display: inline-block; 
     color: white;
     /* height: 60px; */
     text-align: center;
     text-decoration: none;
     padding: 19px 16px;
-    /*border-style: solid;
-    border-color:  #909090 ; */
-    /* border:0.5px #999999 solid;  */
 }
 
-.nav li a:hover { /*鼠标移上去，改变背景颜色*/
+.nav li a:hover { 
     background-color: #111;
 }
 
@@ -1038,4 +1019,134 @@ button.outstanding {
     font-size:20px;
     color:white;
     text-align:center;
+}
+
+
+
+/******************************************************
+ *                     style.css
+ ******************************************************/
+
+ .fix-container,
+.general-container,
+.top10-container {
+    position:absolute;
+    /* text-align: center; */
+    width: 1141px;
+    /* border: dotted 1px #555555; */
+    margin:auto;
+    position: absolute;
+    left:0;
+    right:0;
+    
+}
+.general-container{
+    top: 0px;
+}
+.top10-container{
+    top: 10px;
+}
+.fix-container {
+    top: 300px;
+}
+
+.purchase {
+    margin:40px 0;
+}
+
+.purchase .images{
+    width: 40%;
+    float:left;
+    text-align: center;
+}
+
+.purchase .detail{
+    width: 60%;
+    float:left;
+}
+.purchase:after {
+    content:"";
+    display:block;
+    height:0;
+    visibility:hidden;
+    clear:both;
+}
+.imageview {
+    height: 400px;
+    width: 400px;
+    border: 1px dotted #ccc;
+    margin:auto;
+    background-size: 100%;
+}
+
+.imagelist{
+    margin-top: 20px;
+    width: 100%;
+    /* border: 1px dotted #ccc; */
+    height: 60px;
+}
+.imagelist ul{
+    margin:0;
+    padding:0;
+    margin-left: 20px;
+}
+
+.imagelist ul li {
+    list-style-type: none;
+    margin: 0 10px;
+    height: 60px;
+    padding:2px;
+    float:left;
+    cursor: pointer;
+}
+.imagelist ul li.active {
+    padding:0;
+    border:solid 2px #9b3535;
+}
+.imagelist ul li img{
+    height:60px;
+}
+
+.purchase .detail-info {
+    padding-left: 40px;
+}
+.purchase .detail .general{
+    height: 300px;
+    overflow: auto;
+}
+.purchase .detail button{
+    width: 400px;
+    height: 40px;
+    color: white;
+    background-color: rgba(10, 10, 10, 1);
+    border: solid 1px rgba(10, 10, 10, 1);
+    cursor: pointer;
+}
+
+
+.imageview img{
+    height: 400px;
+    width: 400px;
+}
+
+.content-container .center{
+    text-align: center;
+}
+.table {
+    width: 50%;
+    border-collapse:collapse;
+}
+.table th,
+.table td
+{
+    border-bottom: solid 1px black;   
+    height: 40px;
+    text-align: center;
+}
+.table th {
+    border-top: solid 1px black;
+}
+.table thead tr,
+.table tbody tr:nth-child(2n) {
+    background-color: #eee;
 }
