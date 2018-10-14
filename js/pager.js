@@ -1,5 +1,5 @@
 
-var initPager = function(realPages, divId) {
+var Pager = function(realPages, divId) {
     var divDom = document.createElement('div'),
         ulDom = document.createElement('ul');
     divDom.setAttribute('class','pager');
@@ -36,10 +36,12 @@ var initPager = function(realPages, divId) {
         ulDom.appendChild(liDom);
     }
     divDom.appendChild(ulDom);
-    return divDom;
+    // return divDom;
+    this.dom = divDom;
+    this.id = divId;
 }
 var pageClick = function(url, action) {
     
 }
-window.myPage = {'initPager': initPager};
+// window.myPage = {'Pager': Pager};
     

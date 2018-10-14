@@ -1,0 +1,1041 @@
+* {
+    margin:0;
+    padding:0;
+}
+body {
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    /* color: #666; */
+    font: 400 13px/1.8 "Open Sans", sans-serif;
+}
+/************************************************************
+ *                           manage-menu
+ ************************************************************/
+ .header {
+    width: 100%;
+    height: 80px;
+    /* background-image: url('../images/senlin.jpg'); */
+    background-color: #123456;
+    position:fixed;
+    top:0;
+    left:0;
+    text-align: left;
+    color:#aaa;
+    z-index: 1000;
+}
+.header .content{
+    width:1141px;
+    line-height: 80px;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    margin:auto;
+
+    /* padding-left: 20%;
+    padding-right: 20%; */
+}
+
+.header .title {
+    float:left;
+    width: 30%;
+}
+.header .menu {
+    float:right;
+    cursor: pointer;
+    margin-left: 20px;
+    text-align: right;
+    height: 80px;
+    line-height: 80px;
+}
+
+
+/***************************************************************
+ *                          menu
+ ***************************************************************/
+ .display-modal {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    top:0; left:0; bottom:0; right:0;
+    background-color:rgba(4,4,4, 0.4);
+    z-index:9000;
+}
+.dmodal-content {
+    position:absolute;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    margin:auto;
+    vertical-align: middle;
+    width: 400px;
+    height: 300px;
+    z-index: 1000;
+    background-color: white;
+}
+.display-modal .dmodal-header{
+    margin: 20px;
+    border-bottom: solid 1px #ccc;
+}
+.display-modal .dmodal-body {
+    margin: 20px;
+    border-bottom: solid 1px #ccc;
+    height: 100px;
+}
+.display-modal .message {
+    font-size: 18px;
+    margin: 30px 50px;
+    color: black;
+}
+.display-modal .dmodal-footer{
+    margin:30px;
+}
+.display-modal .action {
+    text-align: center;
+}
+.display-modal button{
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    border:solid 1px #123456;
+    background-color:white;
+    cursor: pointer;
+    transition: color 0.15s ease-in, background-color 0.15s ease-in, box-shadow 0.15s  ease-in;
+}
+.display-modal button.ok{
+    background-color: #123456;
+    color:white;
+    margin-left: 10px;
+}
+.display-modal button:hover{
+    box-shadow: 0 0 1px 1px rgba(18,52,86,0.5);
+}
+
+
+
+/*************************************************************
+ *                           login
+ *************************************************************/
+.login {
+    background-color:rgba(255,255,255,0.6);
+    vertical-align: middle;
+    text-align: center;
+    width: 400px;
+    height:  350px;
+    border: solid 1px rgba(255,255,255,0.5);
+    margin:auto;
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    border-radius: 10px;
+}
+.login-title {
+    margin-top:30px;
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #123456;
+    font-weight: bold;
+}
+.form-unit {
+    /* position:absolute; */
+    margin:auto;
+    margin-bottom: 30px;
+    /* margin: 20px; */
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    border:solid 1px #123456;
+    border-radius:5px;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    
+}
+.form-unit.active {
+    box-shadow: 0 0 0 1px #123456;
+    border:solid 1px #123456;
+}
+.form-unit input {
+    height: 30px;
+    width: 250px;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+    background-color:inherit;
+    font-size: 16px;
+    color: #123456;
+}
+
+.form-button {
+    margin-bottom: 30px;
+    height: 40px;
+    width: 300px;
+    border-radius: 5px;
+    background-color: rgba(18,52,86, 0.85);
+    color: white;
+    border: solid 1px #123456;
+    outline: none;
+    cursor: pointer;
+    font-size:16px;
+    /* letter-spacing: 3px; */
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.form-button:hover{
+    box-shadow: 0 0 0 1px #123456;
+    background-color: #123456;
+    color:white;
+    border:solid 1px #123456;
+    
+}
+.attach-info {
+   
+    font-size: 14px;
+    margin:auto;
+    margin-top:5px;
+    margin-bottom:10px;
+    text-align: center;
+    width:300px;
+}
+
+.attach-info div{
+    text-align: left;
+}
+.attach-info div a{
+    text-decoration:none;
+    color: #123456;
+}
+
+.attach-info div a:hover{
+    color: black;
+    transition: color 0.15s ease;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #123456;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #123456;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #123456;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #123456;
+}
+
+/**********************************************************************
+ *                        main-manage.html
+ **********************************************************************/
+.container {
+    position:absolute;
+    margin:auto;
+    top: 20px;
+    bottom:0;
+    left: 0;
+    right: 0;
+    width:1141px;
+    /* border: solid 1px #ccc; */
+}
+.catalog-menu {
+    width: 20%;
+    float:left;
+}
+.catalog-menu ul {
+    border: solid 1px #ccc;
+    margin:0;
+    padding: 0;
+    
+}
+.catalog-menu li {
+    list-style:none;
+    /* padding-left: 40px; */
+    cursor: pointer;
+    position:relative;
+    
+    border-bottom: solid 1px #aaa;
+}
+.catalog-menu li:hover {
+    background-color: #123456;
+    color:white;
+}
+.catalog-menu li a:hover {
+    color:white;
+}
+.catalog-menu a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    padding:10px 40px;
+    height: 30px;
+    line-height:30px;
+}
+.catalog-main {
+    width: 80%;
+    float:left;
+    margin-bottom:40px;
+}
+.catalog-action {
+    margin-left: 20%;
+    width: 80%;
+    float:left;
+    margin-bottom:40px;
+    
+}
+.half-container {
+    margin: 0 10px;
+}
+button.full{
+    height: 40px;
+    /* margin:20px; */
+    width: 100%;
+    font-size: 16px;
+}
+.half{
+    width: 50%;
+    font-size: 16px;
+    /* display: inline-block; */
+    float:left;
+}
+button.outstanding {
+    background-color: #123456;
+    color: white;
+    /* border: solid 1px rgba(18,52,86,0.5); */
+}
+.main {
+    
+    width: 100%;
+    height:auto;
+}
+.main ul {
+    /* border: solid 1px #ccc; */
+    margin:0;
+    border-top: solid 1px #ccc;
+}
+.catalog-main li {
+    list-style: none;
+    width: 33.3%;
+    float: left;
+    
+}
+.catalog-main li div {
+    margin:10px;
+}
+.catalog-main li img {
+    width:225px;
+    max-height: 300px;
+}
+/* .detail {
+    display:none;
+    position: absolute;
+    left: 100%;
+    top: -6px;
+    width: 600px;
+    background-color:white;
+} */
+.catalog {
+    border: solid 1px #eee;
+    text-align: center;
+    padding-top:10px;
+    transition: border-color 0.15s ease-in-out;
+    height: 341px;
+}
+.catalog span {
+    /* display:block; */
+    color: #123456;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.catalog:hover,
+#add-btn:hover {
+    border-color: #123456;
+    cursor:pointer;
+}
+
+.add-item {
+    text-align: center;
+    position: relative;
+}
+#add-btn {
+    cursor: pointer;
+    height: 341px;
+    padding-top:10px;
+    margin:10px;
+    transition: border-color 0.15s ease-in-out;
+    border:solid 1px #eee;
+}
+
+#mask {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    top:0; left:0; bottom:0; right:0;
+    background-color:rgba(4,4,4, 0.4);
+}
+#add-form{
+    position:absolute;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    margin:auto;
+    vertical-align: middle;
+    width: 400px;
+    height: 300px;
+    z-index: 1000;
+    background-color: white;
+}
+.hidden {
+    display: none;
+}
+#add-form>div {
+    margin-top: 80px;
+    position: relative;
+    
+}
+#add-form div{
+    height: 35px;
+    vertical-align: middle;
+    margin-left: 20px;
+}
+#add-form input{
+    width: 200px;
+    height: 30px;
+    padding-left: 10px;
+    outline: none;
+
+}
+#add-form span{
+    display:inline-block;
+    text-align: right;
+    width: 80px;
+}
+button {
+    background-color: white;
+    border:solid 1px #123456;
+    height: 30px;
+    width: 70px;
+    line-height: 30px;
+    cursor: pointer;
+    color: #123456;
+    transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out, background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+button.ok {
+    background-color: #123456;
+    color:white;                
+}
+button:hover{
+    box-shadow: 0 0 0px 1px rgba(18,52,86,0.5);
+}
+.upload {
+    position: relative;
+    display: inline-block;
+    background-color: white;
+    border: 1px solid #aaa;
+    padding: 4px 12px;
+    overflow: hidden;
+    text-decoration: none;
+    /* text-indent: 0; */
+}
+.upload input {
+    position: absolute;/*相对定位*/
+    right: 0;
+    top: 0;
+    opacity: 0;/*将上传组件设置为透明的*/
+    font-size: 100px;
+}
+.upload:hover {
+    text-decoration: none;
+}
+span.errorTip,
+span.showFileName {
+    /* overflow: hidden; */
+    font-size: 8px;
+    /* line-height:30px; */
+}
+
+/*****************************************************************
+ *                           manage.html
+ *****************************************************************/
+ body { /*设置内容与浏览器边框无间距*/
+
+}
+
+.fix-container {
+    position:absolute;
+    /* text-align: center; */
+    width: 1141px;
+    /* border: dotted 1px #555555; */
+    margin:auto;
+    position: absolute;
+    left:0;
+    right:0;
+    top: 10px;
+}
+
+.nav {
+    margin: 0;
+    background-color: rgba(10, 10, 10, 1);
+    height: 60px;
+    position: fixed;
+    right: 0;
+    left:0;
+    top:0;
+    z-index:1000;
+}
+/* .fixed{
+    position: fixed;
+    
+} */
+.nav ul {
+    float:right;
+    margin: 0;
+    /* padding: 0; */
+    list-style-type: none; /*去除li前的标注*/
+    height:60px;
+    overflow: hidden; /*隐藏溢出的部分，保持一行*/
+}
+.nav li {
+    float: left; /*左浮动*/
+    height:60px;
+    
+}
+.nav li a {
+    display: inline-block; /*设置成块*/
+    color: white;
+    /* height: 60px; */
+    text-align: center;
+    text-decoration: none;
+    padding: 19px 16px;
+    /*border-style: solid;
+    border-color:  #909090 ; */
+    /* border:0.5px #999999 solid;  */
+}
+
+.nav li a:hover { /*鼠标移上去，改变背景颜色*/
+    background-color: #111;
+}
+
+.subnav {
+    margin:0;
+    height: 360px;
+    background-color: #222;
+    line-height: 360px;
+    font-size: 50px;
+    text-align: center;
+}
+
+.content{
+    /* height: 1000px; */
+    /* border: 1px #555 dotted ; */
+    margin-top: 80px;
+    
+}
+.content .content-search{
+    min-width: 200px;
+    width: 20%;
+    /* height:1000px; */
+    float:left;
+    
+    /* border-right:1px #555 solid; */
+}
+.content .content-display{
+    float:left;
+    /* display:inline-block; */
+    width:80%;
+    margin-bottom: 40px;
+}
+
+.content .goods{
+    margin:0;
+    padding:0;
+    width:100%;
+    
+}
+.content-display ul{
+    padding:0;
+    
+}
+.content-display ul li {
+    list-style-type: none;
+    position: relative;
+    /* height: 240px; */
+    width:33.3%;
+    min-width:240px;
+    margin:0;
+    float:left;
+    
+    text-align: center;
+}
+
+.content-display ul li:nth-child(3n+1) {
+    clear:left;
+}
+.content-display ul li:nth-child(3n+2) {
+    clear:none;
+}
+.content-display ul li.last {
+    /* clear:none; */
+    float:left;
+}
+.content-display ul li div.img{
+    margin-top:5px;
+    margin-right:5px;
+    margin-left:5px;
+    height: 240px;
+    /* width:100%; */
+    /* text-align: center; */
+    /* border: 0.2px #ccc dotted; */
+}
+.content-display ul li img{
+    height:100%;
+    /* width:100%; */
+}
+
+.content-display ul li h3 {
+    margin-top:5px;
+}
+
+.content-search .brand-select,
+.content-search .product-select{
+    width: 100%;
+    height:40px;
+    font-size:14px;
+    color: #111;
+    letter-spacing: 2px;
+    font-family: "Roboto Condensed", sans-serif;
+}
+input{
+    padding:5px;
+    
+}
+.content-search h3 {
+    font-size: 12px;
+    color: #111;
+    font-weight: normal;
+    padding-bottom: 10px;
+    border-bottom: 1px #111 dotted;
+}
+.content-search .sub-search{
+    margin-bottom: 100px;
+}
+input {
+    height:inherit;
+    padding: 5px;
+}
+
+.purchase {
+    margin:40px 0;
+}
+
+.purchase .images{
+    width: 40%;
+    float:left;
+    text-align: center;
+}
+
+.purchase .detail{
+    width: 60%;
+    float:left;
+}
+.purchase:after {
+    content:"";
+    display:block;
+    height:0;
+    visibility:hidden;
+    clear:both;
+}
+.imageview {
+    height: 400px;
+    width: 400px;
+    border: 1px dotted #ccc;
+    margin:auto;
+    background-size: 100%;
+}
+
+.imagelist{
+    margin-top: 20px;
+    width: 100%;
+    /* border: 1px dotted #ccc; */
+    height: 60px;
+}
+/* .imagelist button {
+    height: 100px;
+    width: 20px;
+    background-color: #ccc;
+} */
+.imagelist ul{
+    margin:0;
+    padding:0;
+    margin-left: 20px;
+}
+
+.imagelist ul li {
+    list-style-type: none;
+    margin: 0 10px;
+    height: 60px;
+    padding:2px;
+    /* width:100px; */
+    /* display:inline; */
+    float:left;
+    cursor: pointer;
+}
+.imagelist ul li.active {
+    padding:0;
+    border:solid 2px #9b3535;
+}
+.imagelist ul li img{
+    height:60px;
+}
+
+.purchase .detail-info {
+    padding-left: 40px;
+}
+.purchase .detail .general{
+    height: 300px;
+    overflow: auto;
+}
+.purchase .detail button{
+    width: 400px;
+    height: 40px;
+    color: white;
+    background-color: rgba(10, 10, 10, 1);
+    border: solid 1px rgba(10, 10, 10, 1);
+    cursor: pointer;
+}
+
+
+.imageview img{
+    height: 400px;
+    width: 400px;
+}
+
+.content-container .center{
+    text-align: center;
+}
+.table {
+    width: 50%;
+    border-collapse:collapse;
+}
+.table th,
+.table td
+{
+    border-bottom: solid 1px black;   
+    height: 40px;
+    text-align: center;
+}
+.table th {
+    border-top: solid 1px black;
+}
+.table thead tr,
+.table tbody tr:nth-child(2n) {
+    background-color: #eee;
+}
+.hidden {
+    display: none;
+}
+
+.imghover {
+    background-color: rgba(10,10,10,0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    vertical-align: middle;
+    z-index:800;
+    font-size: 20px;
+    cursor: normal;
+}
+
+.imghover span.fa {
+    margin-top: 120px;
+}
+
+span.delete {
+    color: rgb(241, 46, 46);
+    margin: 10px;
+    cursor: pointer;
+}
+
+span.edit {
+    color: rgb(41, 226, 41);
+    margin: 10px;
+    cursor: pointer;
+}
+
+/******************************************************************
+ *                             manage2
+ ******************************************************************/
+
+ .manage.content-display {
+    width: 100%;
+}
+
+.manage.content-display ul li {
+    list-style-type: none;
+    position: relative;
+    /* height: 240px; */
+    width:25%;
+    min-width:240px;
+    margin:0;
+    float:left;
+    
+    text-align: left;
+}
+.manage.content-display ul li div.goods-subcontainer{
+    border: dotted 1px #cccccc;
+    
+}
+.manage.content-display ul li div.goods-container{
+    border: dotted 3px #ffffff;
+    margin:10px;
+}
+.manage.content-display ul li div.goods-subcontainer:hover{
+    border: dotted 1px #ffffff;
+    
+}
+.manage.content-display ul li div.goods-container:hover {
+    border: solid 3px #123456;
+    transition: 0.5s;
+}
+.manage.content-display ul li.last {
+    /* clear:none; */
+    float:left;
+}
+
+.manage.content-display ul li:nth-child(3n+1) {
+    clear:none;
+}
+.manage.content-display ul li:nth-child(3n+2) {
+    clear:none;
+}
+.manage em.price {
+    font-size: 20px;
+    font-style: normal;
+    padding-left:10px;
+}
+.manage p {
+    margin:0;
+    color: #222222;
+    margin-bottom:10px;
+    padding-left:10px;
+}
+
+.manage p a {
+    text-decoration: none;
+}
+.goods-container {
+    position: relative;
+}
+
+.imghover {
+    background-color: rgba(10,10,10,0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    vertical-align: middle;
+    z-index:800;
+    font-size: 20px;
+    cursor: normal;
+}
+
+.imghover span.fa {
+    margin-top: 120px;
+}
+
+span.delete {
+    color: rgb(241, 46, 46);
+    margin: 10px;
+    cursor: pointer;
+}
+
+span.edit {
+    color: rgb(41, 226, 41);
+    margin: 10px;
+    cursor: pointer;
+}
+
+.add-goods {
+    text-align: center;
+    border:solid 1px #ccc;
+    transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    height: 50px;
+    cursor: pointer;
+}
+.add-goods>span{
+    line-height: 50px;
+    color: #123456;
+}
+.add-goods:hover{
+    box-shadow: 0 0 1px 1px #123456;
+}
+.page-foot {
+    margin-bottom: 20px;
+}
+
+/*****************************************************************************
+ *                                     submit
+ *****************************************************************************/
+
+ /* .container {
+    overflow: auto;
+} */
+.editor {
+    background-color: white;
+    border-collapse: separate; 
+    border: 1px solid rgb(204, 204, 204); 
+    padding: 4px; 
+    box-sizing: content-box; 
+    -webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset; 
+    box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+    border-top-right-radius: 3px; border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px; border-top-left-radius: 3px;
+    overflow: auto;
+    /* outline: none; */
+    margin-bottom: 20px;
+}
+.title div{
+    margin-bottom: 10px;
+}
+#general-editor {
+    max-height: 200px;
+    height: 200px;
+    
+}
+#desc-editor {           
+    height: 300px;
+}
+button {
+    background-color: white;
+    border:solid 1px #123456;
+    height: 30px;
+    width: 70px;
+    line-height: 30px;
+    cursor: pointer;
+    color: #123456;
+    transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out, background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+button.ok {
+    background-color: #123456;
+    color:white;                
+}
+button:hover{
+    box-shadow: 0 0 0px 1px rgba(18,52,86,0.5);
+}
+.submit-action {
+    /* margin-left: 20%; */
+    width: 100%;
+    float:left;
+    margin-bottom:40px;
+    
+}
+.half-container {
+    margin: 0 10px;
+}
+button.full{
+    height: 40px;
+    /* margin:20px; */
+    width: 100%;
+    font-size: 16px;
+}
+
+ .half{
+    width: 50%;
+    font-size: 16px;
+    /* display: inline-block; */
+    float:left;
+}
+button.outstanding {
+    background-color: #123456;
+    color: white;
+}
+.span-btn{
+    cursor: pointer;
+    margin-left: 10px;
+}
+.span-btn.ok {
+    color: rgb(8, 148, 8);
+}
+.span-btn.cancel {
+    color: rgb(223, 81, 81);
+}
+
+/****************************************************************
+ *                           userinfo.html
+ ****************************************************************/
+
+.userinfo.container {
+    top: 100px;
+}
+ .info, .password{
+    margin-bottom: 10px;
+    margin-top: 20px;
+    height:35px;
+}
+.info-name, .password-name{
+    width: 35%;
+    text-align: right;
+    display: inline-block;
+    /* font-size: 18px; */
+    line-height:35px;
+    font-weight: bold;
+}
+.info-value, .password-value{
+    /* width: 500px; */
+    text-align: left;
+    display: inline-block;
+    /* font-size: 18px; */
+    margin-left: 20px;
+    line-height:35px;
+    
+}
+.info-value  span{
+    cursor: pointer;
+}
+.userinfo-input{
+    /* font-size: 18px; */
+}
+.button {
+    width: 80px;
+    height: 30px;
+    border:solid 1px #ccc;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.info.submit,
+.password.submit {
+    margin-top: 40px;
+    margin-left: 35%;
+    padding-left:20px;
+    /* text-align: center; */
+}
+.button.submit {
+    background-color:#123456;
+    color: white;
+    
+    border: solid 1px #123456;
+}
+.button.submit:hover {
+    box-shadow: 0 0 1px 1px#123456;
+}
+.button.cancel:hover {
+    box-shadow: 0 0 1px 1px#ccc;
+}
+.hidden {
+    display: none;
+}
+.head {
+    background-color: #123456;
+    height: 80px;
+    line-height:80px;
+    font-size:20px;
+    color:white;
+    text-align:center;
+}

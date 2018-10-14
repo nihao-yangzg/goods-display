@@ -1,125 +1,5 @@
-function createGoodsList0(goods){
-    var dom = document.createElement("li");
-    var div = document.createElement('div');
-    var img = document.createElement('img');
-    img.setAttribute('src', goods['imgUrl']);
-    img.setAttribute('productId', goods['productId']);
-    div.appendChild(img);
-    var title = document.createElement('h3');
-    title.textContent = goods['title'];
-    dom.append(div);
-    dom.appendChild(title);
-    return dom;
-}
-function createGoodsList1(goods){
-    var dom = document.createElement("li");
-    var container = document.createElement('div');
-    var subContainer = document.createElement('div');
-    var imgDiv = document.createElement('div');
-    var img = document.createElement('img');
-    var price = document.createElement('em');
-
-    img.setAttribute('src', goods['imgUrl']);
-    img.setAttribute('productId', goods['productId']);
-    imgDiv.appendChild(img);
-    imgDiv.setAttribute('class', 'img');
-
-    var title = document.createElement('p');
-    var link = document.createElement('a');
-    link.setAttribute('href', goods['goodsUrl']);
-    link.textContent = goods['title'];
-    title.appendChild(link);
-
-    price.textContent = goods['price'];
-    price.setAttribute('class', 'price');
-    // title.textContent = goods['title'];
-
-    subContainer.setAttribute('class', 'goods-subcontainer');
-    subContainer.append(imgDiv);
-    subContainer.append(price);
-    subContainer.appendChild(title);
-
-    container.setAttribute('class','goods-container');                
-    container.appendChild(subContainer);
-
-    dom.appendChild(container);
-
-    return dom;
-}
-
 $(function(){
-    var _testBrand = [
-        {'value': 'Adidas', 'id': 1},
-        {'value': 'Nike', 'id': 2},
-        {'value': 'Lining', 'id': 3},
-        {'value': 'Anta', 'id': 4},
-    ];
-    createBrandSelect(_testBrand);
-    function getBrandList(catalogId) {
-        if (catalogId) {
-            $.ajax({
-                url: '/api/brand/all?catalogId=' + catalogId,
-                type: 'get',
-                dataType: 'json',
-                success: function(res) {
-                    createBrandSelect(res.data);
-                },
-                error: function(err){
-
-                }
-            })
-        }
-    }
-    function createBrandSelect(data) {
-        var optionDom;
-        if (data && data.length) {
-            var $brandList = $('#brand-list');
-            data.forEach(function(item,index){
-                optionDom = document.createElement('option');
-                optionDom.setAttribute('value', item['value']);
-                optionDom.innerText = item['value'];
-                $brandList.append($(optionDom));
-            })
-        }
-    }
-    $('.brand-select').val("").select2({
-        placeholder: "Select a brand",
-        allowClear: true
-    });
-
-    $('.brand-select').on('change', function(e){
-        var brandId = $(this).val();
-        var catalogId = getItemFromUrl('catalogId');
-        $.ajax({
-            url: '/api/goods/search?brandId=' + brandId + '&catalogId=' + catalogId,
-            type: 'get',
-            dataType: 'json',
-            success: function(res) {
-
-            }, error: function(err) {
-
-            }
-        })
-    })
-    // $('.sorted').val("").select2({
-    //     placeholder: "Sorted by",
-    //     allowClear: true
-    // })
-    function getGoodsByPage(page) {
-        if (page > 0) {
-            $.ajax({
-                url: '/api/goods?page=' + page,
-                type: 'get',
-                dateType: 'json',
-                success: function(res) {
-                    console.log(res.data);
-                },
-                error: function(err) {
-                    console.log(err.responseText);
-                }
-            })
-        }
-    }
+            
     var goodslist = [
         {'imgUrl': '../images/a.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewata', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
         {'imgUrl': '../images/b.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewatb', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
@@ -130,14 +10,45 @@ $(function(){
         {'imgUrl': '../images/g.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewatg', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
         {'imgUrl': '../images/h.jpg', 'title': 'one more牛仔高腰显瘦宽松学生长裤', 'productId': 'fniewath', 'price': '$25.4', 'goodsUrl': 'http://www.baidu.com'},
     ];
-    var maxPageNo = 30;
-    function goodsShow(goodslist) {
-        $goodsList = $('#goods-list');
-        $goodsList.empty();
-        goodslist.forEach(function(goods, index) {
-            // var dom = createGoodsList0(goods);
-            var dom = createGoodsList1(goods);
+    function createGoodsList(goods){
+        var dom = document.createElement("li");
+        var container = document.createElement('div');
+        var subContainer = document.createElement('div');
+        var imgDiv = document.createElement('div');
+        var img = document.createElement('img');
+        var price = document.createElement('em');
 
+        img.setAttribute('src', goods['imgUrl']);
+        img.setAttribute('productId', goods['productId']);
+        imgDiv.appendChild(img);
+        imgDiv.setAttribute('class', 'img');
+
+        var title = document.createElement('p');
+        var link = document.createElement('a');
+        link.setAttribute('href', goods['goodsUrl']);
+        link.textContent = goods['title'];
+        title.appendChild(link);
+
+        price.textContent = goods['price'];
+        price.setAttribute('class', 'price');
+        // title.textContent = goods['title'];
+
+        subContainer.setAttribute('class', 'goods-subcontainer');
+        subContainer.append(imgDiv);
+        subContainer.append(price);
+        subContainer.appendChild(title);
+
+        container.setAttribute('class','goods-container');                
+        container.appendChild(subContainer);
+        dom.setAttribute('data-id', goods['productId']);
+        dom.appendChild(container);
+
+        return dom;
+    }
+    function _display(goodslist) {
+        goodslist.forEach(function(goods, index) {
+            $goodsList = $('#goods-list')
+            var dom = createGoodsList(goods);
             if (index % 3 === 0) {
                 dom.setAttribute('class', 'first');
             } else if (index % 3 === 2) {
@@ -146,36 +57,102 @@ $(function(){
             $goodsList.append(dom);
         });
     }
-    goodsShow(goodslist);
-    // $('.goods ul').on('mouseover', function(event) {
-    //     console.log(event.target.nodeName);
-    //     if (event.target.nodeName === 'IMG') {
-    //         var $img = $(this);
-    //         var height = $img.height(),
-    //             width = $img.width();
-    //         var hover = document.createElement('div');
-    //         hover.style.height = height;
-    //         hover.style.width = width;
-    //         hover.setAttribute('id', 'img-hover');
-    //         hover.style.position = 'relative';
-    //         hover.style.top = '0';
-    //         hover.style.left = '0';
-    //         hover.style.backgroundColor = '#ccc';
-    //         hover.textContent = 'click';
-    //         console.log(hover);
-    //         $img.parent('div').append(hover);
-    //     }
-    // }).on('mouseout', function() {
-    //     $('#img-hover').remove();
-    // })
+    _display(goodslist);
+    $('.goods-container').on('mouseenter', function(event) {
+        console.log(event.target);
+        // if (event.target.nodeName === 'IMG') {
+        var $this = $(this);
+        var height = $this.height(),
+            width = $this.width();
+        var hover = document.createElement('div');
+        hover.style.height = height;
+        hover.style.width = width;
+        hover.setAttribute('id', 'img-hover');
+        hover.setAttribute('class', 'imghover');
+        
+        var containerDom = document.createElement('div');
+        containerDom.setAttribute('class', '')
+
+        var deleteDom = document.createElement('span'),
+            editDom = document.createElement('span');
+
+        deleteDom.setAttribute('class', 'fa fa-trash fa-2x delete');
+        $(deleteDom).on('click', function() {
+            _showModal();
+            var productId = $this.parents('li').attr('data-id');
+            $('#productId').attr('productId', productId);
+            
+        })
+
+        editDom.setAttribute('class', 'fa fa-pencil-square-o fa-2x edit');
+        $(editDom).on('click', function(e) {
+            var productId = $this.parents('li').attr('data-id');
+            if (productId) {
+                window.open('/html/submit.html?productId=' + productId);
+            }
+        })
+
+        containerDom.appendChild(editDom);
+        containerDom.appendChild(deleteDom);
+
+        hover.appendChild(containerDom);
+        // hover.textContent = 'click';
+        
+        $this.append(hover);
+        // }
+    }).on('mouseleave', function() {
+        $('#img-hover').remove();
+    })
     $('.goods ul').on('click', function(event) {
         if (event.target.nodeName === 'IMG') {
             var id = $(event.target).attr('productId');
             console.log(id);
-            window.open('./detail.html?id=' + id);
+            location.href='./detail.html?id=' + id;
         }
     });
+
+    $('#add-goods').on('click', function(e) {
+        window.open("/html/submit.html");
+    })
+
+    $('#modal button.ok').on('click', function(){
+        var productId = $('#productId').attr('productId');
+        deleteProduct(productId);
+    })
+    $('#modal button.cancel').on('click', function(){
+        $('#productId').removeAttr('productId');
+        _hideModal();
+    })
+    function _showModal() {
+        var $modal = $('#modal');
+        $modal.removeClass('hidden');
+    }
+    function _hideModal() {
+        var $modal = $('#modal');
+        $modal.addClass('hidden');
+    }
+    function deleteProduct(productId) {
+        if (productId !== undefined) {
+            $.ajax({
+                url: '/api/product/delete',
+                data: {'id': productId},
+                dataType: 'json',
+                type: 'delete',
+                success: function(res) {
+                    _display(res.data);
+                }, error: function(err) {
+
+                }
+            })
+        }
+    }
+
+
+    /**
+     * for page
+     */
     var $pager = $('div.page-foot');
+    var maxPageNo = 30;
     var pager = new Pager(undefined, 'goods-pager');
     $pager.append($(pager.dom));
     $pager.on('click', function(e) {
@@ -184,10 +161,14 @@ $(function(){
         var $this = $(target);
         var page, action, targetPage;
         if (target.nodeName === 'A') {
+            console.log($this);
             page = getPageData($this);
+            console.log('page  ', page);
             if (!page) {
                 page = getCurrentPage();
                 action = getPageAction($this);
+                console.log('action', action);
+                console.log('page', page);
                 if (isNext(action)) {
                     targetPage = +(page) + 1;
                 } else {
@@ -197,6 +178,7 @@ $(function(){
                 targetPage = +page;
             }
             _pageActive($this);
+            console.log(targetPage);
             // getGoodsByPage(targetPage);
             
             if (targetPage !== 1) {
@@ -240,6 +222,7 @@ $(function(){
             var currentPage = getCurrentPage();
             var index = getCurrentPageIndex();
             
+            console.log('index:  ', index);
             if (isNext(action)) {
                 value = currentPage + 1;
                 $this = $this.parents('#goods-pager>ul').find('li:nth-child(' + (index + 1 > 11 ? 11 : (index + 1)) + ')').children('a');

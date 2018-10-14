@@ -1,0 +1,559 @@
+/**********************************************
+ *                style.css
+ **********************************************/
+body { 
+    margin: 0;
+    padding: 0;
+    color: #666;
+    font: 400 13px/1.8 "Open Sans", sans-serif;
+    background-color: #fff;
+}
+
+
+.fix-container,
+.general-container,
+.top10-container,
+.container {
+    position:absolute;
+    width: 1141px;
+    margin:auto;
+    position: absolute;
+    left:0;
+    right:0;
+    
+}
+.general-container{
+    top: 0px;
+}
+.top10-container{
+    top: 10px;
+}
+.fix-container {
+    top: 300px;
+}
+
+.nav {
+    margin: 0;
+    background-color: #123456;
+    height: 60px;
+    position: fixed;
+    right: 0;
+    left:0;
+    top:0;
+    z-index:1000;
+}
+.fixed{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    width: 1141px;
+    height: 60px;
+    margin:auto;
+    
+}
+.nav ul {
+    float:right;
+    margin: 0;
+    /* padding: 0; */
+    list-style-type: none; /*去除li前的标注*/
+    height:60px;
+    /* overflow: hidden; 隐藏溢出的部分，保持一行 */
+}
+.nav ul li {
+    float: left; /*左浮动*/
+    height:60px;
+    
+}
+.nav ul li a {
+    display: inline-block; /*设置成块*/
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 19px 16px;
+}
+
+.nav ul li a:hover { 
+    /*鼠标移上去，改变背景颜色*/
+    background-color: rgba(18,52,86,0.3);
+}
+
+.subnav {
+    margin:0;
+    height: 360px;
+    line-height: 360px;
+    font-size: 50px;
+    text-align: center;
+    background-image: url('../images/senlin.jpg');
+}
+
+.content{
+    margin-top: 80px;
+    margin-bottom: 40px;
+    
+}
+.content .content-search{
+    min-width: 200px;
+    width: 20%;
+    float:left;
+}
+.content .content-display{
+    float:left;
+    width: 100%;
+
+    margin-bottom: 40px;
+}
+.content .goods{
+    margin:0;
+    padding:0;
+    width:100%;
+    
+}
+.content-display ul{
+    padding:0;
+    
+}
+.content-display ul li {
+    list-style-type: none;
+    position: relative;
+    width:25%;
+    min-width:240px;
+    margin:0;
+    float:left;
+    
+    text-align: center;
+}
+
+.content-display ul li div{
+    
+    margin-right:5px;
+    margin-left:5px;
+    text-align: left;
+}
+.content-display ul li img{
+    height:100%;
+}
+
+.content-display ul li h3 {
+    margin-top:5px;
+}
+
+.content-search .brand-select,
+.content-search .product-select{
+    width: 100%;
+    height:40px;
+    font-size:14px;
+    color: #111;
+    letter-spacing: 2px;
+    font-family: "Roboto Condensed", sans-serif;
+}
+input{
+    padding:5px;
+    
+}
+.content-search h3 {
+    font-size: 12px;
+    color: #111;
+    font-weight: normal;
+    padding-bottom: 10px;
+    border-bottom: 1px #111 dotted;
+}
+.content-search .sub-search{
+    margin-bottom: 100px;
+}
+input {
+    height:inherit;
+    padding: 5px;
+}
+
+.goods li div{
+    cursor: pointer;
+    position: relative;
+}
+
+/********************************************************************
+                         for detail.html
+*********************************************************************/
+.purchase {
+    margin:40px 0;
+}
+
+.purchase .images{
+    width: 40%;
+    float:left;
+    text-align: center;
+}
+
+.purchase .detail{
+    width: 60%;
+    float:left;
+}
+.purchase:after {
+    content:"";
+    display:block;
+    height:0;
+    visibility:hidden;
+    clear:both;
+}
+.imageview {
+    height: 400px;
+    width: 400px;
+    border: 1px dotted #ccc;
+    margin:auto;
+    background-size: 100%;
+}
+
+.imagelist{
+    margin-top: 20px;
+    width: 100%;
+    height: 60px;
+}
+.imagelist ul{
+    margin:0;
+    padding:0;
+    margin-left: 20px;
+}
+
+.imagelist ul li {
+    list-style-type: none;
+    margin: 0 10px;
+    height: 60px;
+    padding:2px;
+    float:left;
+    cursor: pointer;
+}
+.imagelist ul li.active {
+    padding:0;
+    border:solid 2px #9b3535;
+}
+.imagelist ul li img{
+    height:60px;
+}
+
+.purchase .detail-info {
+    padding-left: 40px;
+}
+.purchase .detail .general{
+    height: 300px;
+    overflow: auto;
+}
+.purchase .detail button{
+    width: 400px;
+    height: 40px;
+    color: white;
+    background-color: rgba(10, 10, 10, 1);
+    border: solid 1px rgba(10, 10, 10, 1);
+    cursor: pointer;
+}
+
+
+.imageview img{
+    height: 400px;
+    width: 400px;
+}
+
+.content-container .center{
+    text-align: center;
+}
+.table {
+    width: 50%;
+    border-collapse:collapse;
+}
+.table th,
+.table td
+{
+    border-bottom: solid 1px black;   
+    height: 40px;
+    text-align: center;
+}
+.table th {
+    border-top: solid 1px black;
+}
+.table thead tr,
+.table tbody tr:nth-child(2n) {
+    background-color: #eee;
+}
+.hidden {
+    display: none;
+}
+
+/****************************************************************
+  *                          main menu
+  ***************************************************************/
+
+  .dropdown li a, .dropbtn {
+    display: inline-block; /*设置成块*/
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 19px 16px;
+    /*border-style: solid;
+    border-color:  #909090 ; */
+    /* border:0.5px #999999 solid;  */
+} 
+.dropdown:hover .dropbtn { /*鼠标移上去，改变背景颜色*/
+    background-color: rgba(18,52,86,0.3);
+}
+.dropdown {
+    /*display:inline-block将对象呈递为内联对象，但是对象的内容作为块对象呈递。旁边的内联对象会被呈递在同一行内，允许空格。*/
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    opacity: 0.9;
+}
+.dropdown-content a {
+    display: block;
+    color: black;
+    padding: 10px 15px;
+    text-decoration:none;
+}
+.dropdown-content a:hover {
+    background-color: #a1a1a1;
+}
+
+
+/******************************************************************
+ *                            main.html
+ ******************************************************************/
+.header {
+    width: 100%;
+    height: 80px;
+    background-color: #123456;
+    position:fixed;
+    top:0;
+    left:0;
+    text-align: center;
+    color:#aaa;
+    z-index: 1000;
+}
+.container {
+    position:absolute;
+    margin:auto;
+    top: 100px;
+    bottom:0;
+    left: 0;
+    right: 0;
+    width:1141px;
+}
+.catalog-menu {
+    width: 20%;
+    float:left;
+}
+.catalog-menu ul {
+    border: solid 1px #ccc;
+    margin:0;
+    padding: 0;
+    
+}
+.catalog-menu li {
+    list-style:none;
+    padding-top: 10px;
+    padding-left: 40px;
+    padding-bottom: 10px;
+    cursor: pointer;
+    position:relative;
+    height: 30px;
+    line-height:30px;
+    border-bottom: solid 1px #aaa;
+}
+.catalog-menu li:hover {
+    background-color: #123456;
+    color:white;
+
+}
+.catalog-main {
+    width: 80%;
+    float:left;
+    margin-bottom:40px;
+}
+.main {
+    
+    width: 100%;
+    height:auto;
+}
+.main ul {
+    margin:0;
+    border-top: solid 1px #ccc;
+}
+.catalog-main li {
+    list-style: none;
+    width: 33.3%;
+    float: left;
+
+}
+.catalog-main li div {
+    margin:10px;
+}
+.catalog-main li img {
+    width:225px;
+    max-height: 300px;
+}
+.catalog {
+    border: solid 1px #eee;
+    text-align: center;
+    padding-top:10px;
+    transition: border-color 0.15s ease-in-out;
+}
+.catalog span {
+    display:block;
+    color: #123456;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.catalog:hover{
+    border-color: #123456;
+    cursor:pointer;
+}
+
+/********************************************************************
+ *                           pager
+ ********************************************************************/
+ .pager ul {
+    list-style:none;
+    margin-left:0;
+    padding: 0;
+}
+.page-container {
+    display: inline;
+    margin: 0 3px;
+}
+.page-link {
+    text-decoration: none;
+    border: solid 1px #cccccc;
+    padding: 5px 10px;
+    background-color: white;
+    transition: color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+.page-link.active,
+.page-link.active:hover {
+    background-color: #123456;
+    color: white;
+    border-color: #123456;
+    box-shadow: 0 0 1px 1px #123456;
+}
+.page-link:hover {
+    border-color: rgba(18,52,86,0.6);
+    color: #123456;
+    box-shadow: 0 0 1px 1px rgba(18,52,86,0.4);
+}
+.hidden {
+    display:none;
+}
+
+/*********************************************************************
+ *                            index
+ *********************************************************************/
+.content-display ul li div.goods-container{
+    border: dotted 1px #ccc;
+    margin:10px;
+}
+.content-display ul li div.goods-container:hover {
+    border: solid 1px #e03737;
+    transition: 0.5s;
+}
+
+em.price {
+    font-size: 20px;
+    font-style: normal;
+    padding-left:10px;
+}
+ p {
+    margin:0;
+    color: #222222;
+    margin-bottom:10px;
+    padding-left:10px;
+}
+
+p a {
+    text-decoration: none;
+}
+.goods-container {
+    position: relative;
+}
+
+.content-display ul li div.img{
+    margin-top:5px;
+    margin-right:5px;
+    margin-left:5px;
+    height: 240px;
+}
+
+
+/*********************************************************
+ *                         tab page
+ *********************************************************/
+
+ .tablist{
+    margin:0;
+    padding:1px 1px 0 1px;
+    width: 200px;
+    height:40px;
+    float:left;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    border-bottom: solid 1px white;
+}
+.tab-container {
+    border-bottom: solid 1px #ccc;
+    height: 40px;
+}
+.tablist.active{
+    padding:0;
+    border-color: #ccc;
+    border-style: solid;
+    border-top-width:1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-bottom:none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    
+    margin-bottom: 0px;
+    top: 0px;
+    position:relative;
+    background-color:white;
+    background-image: none;
+    background-position: 0% 0%;
+}
+
+/********************************************
+ *                 index
+ ********************************************/
+ .page-foot {
+    padding-left: 20px;
+}
+.main-foot{
+    height: 60px;
+    line-height: 60px;
+    text-align: left;
+    background-color: white;
+    position:relative;
+    /* top: 100%; */
+    bottom:0;
+    left: 0;
+    width:100%;
+}
+.brand-select{
+    width: 100%;
+    
+}
+.sorted{  
+    background:white;  
+    height:28px;  
+    width:180px;  
+    line-height:28px;  
+    border:1px solid #ccc;  
+    -moz-border-radius:2px;  
+    -webkit-border-radius:2px;  
+    border-radius:2px;  
+}
+.select2-container--default .select2-selection--single{
+    border-radius: 2px;
+}
