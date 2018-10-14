@@ -9,17 +9,29 @@
 	4. text-editor
 
 ### main pages:
+	-manage.html
 	-index.html
 	-detail.html
+	
+	-manage-main.html
 	-submit.html
 	-manage.html
 	-login.html
 
 ### waiting to do
-	-登录处理过程
-	-页面菜单栏细节
-	-分页样式及逻辑
-	-编辑、添加逻辑
-	-商品链接位置
-	-搜索、查看逻辑
+	-接口调试
+	-响应处理
+	-错误提示
+	
+
+### 程序主入口
+	-main.html
+	-login.html
+### 本地浏览
+	-安装python 3.x
+	-进入工程根目录
+	-python -m http.server
+	
+	-在浏览器中打开 localhost:8000/html/main.html
+				    localhost:8000/html/login.html
 		
