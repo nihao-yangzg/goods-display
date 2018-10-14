@@ -95,7 +95,7 @@ $('#submit').on('click', function(e) {
         $this = $(this);
 
     $.ajax({
-        url: '/user/edit',
+        url: '/api/user/edit',
         data: {'username': username, 'id': id, 'phone': phone, 'emailAddr': emailAddr},
         dataType: 'json',
         type: 'post',
