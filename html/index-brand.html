@@ -1,0 +1,179 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Index</title>
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <script src="../js/menu.js"></script>
+        <script src="../js/select2.min.js"></script>
+        <script src="../js/dropdown.js"></script>
+        <script src="../js/pager.js"></script>
+        <script src="../js/index.js"></script>
+        <script src="../js/utils.js"></script>
+        <link rel="stylesheet" href="../css/select2.css" type="text/css">
+        <link rel="stylesheet" href="../css/converge.css">
+        <!-- <link rel="stylesheet" href="../css/style.css" type="text/css">
+        <link rel="stylesheet" href="../css/item.css" type="text/css"> -->
+        <!-- <link rel="stylesheet" href="../css/page.css"> -->
+        <!-- <link rel="stylesheet" href="../css/index.css"> -->
+        <style>
+            .brands{
+                height: 100px;
+                width: 100%;
+                border: dotted 1px white;
+                border-radius: 3px;
+                margin-bottom: 20px;
+                
+            }
+            .brand-title{
+                width: 80px;
+                height:80px;
+                vertical-align: top;
+                display:inline-block;
+                padding: 10px;
+            }
+            .brand-content{
+                display: inline-block;
+                width: 1000px;
+                height: 82px;
+                /* overflow: auto; */
+            }
+            #brand-item {
+                margin:0;
+                padding:0;
+               
+                
+            }
+            #brand-item li{
+                margin:0;
+                padding:0;
+                width: 125px;
+                height:40px;
+                text-align: center;
+                line-height: 40px;
+                list-style: none;
+                float:left;
+                
+            }
+            #brand-item li:last-child{
+                width: 126px;
+            }
+            #brand-item div.outer{
+                cursor: pointer;
+                border-bottom: solid 1px #ccc;
+                border-left: solid 1px #ccc;
+            }
+            /* .outer{
+                height: 40px;
+            } */
+            /* #brand-item div.inner{
+                margin:1px;
+                border: solid 1px white;
+            } */
+            #brand-item div.outer:hover{
+                border: solid 1px #123456;
+            }
+            #brand-item li.top div.outer{
+                border-top: solid 1px #ccc;
+            }
+            #brand-item li.top div.outer:hover{
+                border: solid 1px #123456;
+            }
+            #brand-item li:nth-child(8) div.outer{
+                border-right: solid 1px #ccc;
+            }
+            #brand-item li:nth-child(8) div.outer:hover{
+                border-right: solid 1px #123456;
+            }
+            #brand-item li:last-child div.outer{
+                border-right: solid 1px #ccc;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="general-container">
+           
+            <div class="content">
+                <h2>Women's Clothes</h2>
+                    <div class="brands">
+                        <div class="brand-title">Brands:</div>
+                        <div class='brand-content'>
+                            <ul id="brand-item">
+                                <li class='top'><div class="outer"><div class="inner">ADIDAS</div></div></li>
+                                <li class='top'><div class="outer"><div class="inner">ADIDAS</div></div></li>
+                                <li class='top'><div class="outer"><div class="inner">ADIDAS</div></div></li>
+                                <li class='top'><div class="outer"><div class="inner">ADIDAS</div></div></li>
+                                <li class='top'><div class="outer"><div class="inner">ADIDAS</div></div></li>
+                                <li class='top'><div class="outer"><div class="inner">ADIDAS</div></div></li>
+                                <li class='top'><div class="outer"><div class="inner">ADIDAS</div></div></li>
+                                <li class='top'><div class="outer"><div class="inner">ADIDAS</div></div></li>
+                                <li class='bottom'><div class="outer"><div class="inner">ADIDAS</div></div></li>
+                                <li class='bottom'><div class="outer"><div class="inner">ADIDAS</div></div></li>
+                                <li class='bottom'><div class="outer"><div class="inner">ADIDAS</div></div></li>
+                                <li class='bottom'><div class="outer"><div class="inner">ADIDAS</div></div></li>
+                                <li class='bottom'><div class="outer"><div class="inner">ADIDAS</div></div></li>
+                                <li class='bottom'><div class="outer"><div class="inner">ADIDAS</div></div></li>
+                                <li class='bottom'><div class="outer"><div class="inner">ADIDAS</div></div></li>
+                            
+                            </ul>
+                        </div>
+
+                    </div>
+                <div style="display:block; ">
+                    <div style="width: 200px; display:inline-block; ">
+                        <select class="brand-select" name="state" style="height:50%;" id="brand-list">
+                            
+                        </select>
+                    </div>
+                    <div style="float:right;">
+                        <div style="width: 150px;">
+                            <select class="sorted" name="state">
+                                <option value="">select sort rule</option>
+                                <option value="ascent">price ascend</option>
+                                <option value="descend">price descend</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="content-search">
+                    <div class="sub-search">
+                        <h3>BRAND</h3>
+                        <div>
+                            <select class="brand-select" name="state" style="height:50%;">
+                                <option value="AL">Alabama</option>
+                                <option value="WY">Wyoming</option>
+                                <option value="WY">Washington</option>
+                                <option value="WY">Tokyo</option>
+                                <option value="WY">Sydney</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="sub-search">
+                        <h3>PRODUCT</h3>
+                        <div>
+                            <select class="product-select" name="state">
+                                <option value="AL">Shirt</option>
+                                <option value="WY">Shoe</option>
+                                <option value="WY">Hat</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                </div> -->
+                <div class="content-display">
+                    <div class="goods">
+                        <ul id="goods-list">
+                        </ul>
+                    </div>
+                </div>
+                <div class="page-foot">
+                </div>
+            </div>
+           
+
+            <hr/>
+            <div class="main-foot">
+                <span>&copy Display System </span>
+            </div>
+        </div>
+    </body>
+</html>
