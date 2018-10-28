@@ -371,6 +371,9 @@ input {
     float:left;
     margin-bottom:40px;
 }
+
+
+
 .main {
     
     width: 100%;
@@ -386,6 +389,7 @@ input {
     float: left;
 
 }
+
 .catalog-main li div {
     margin:10px;
 }
@@ -409,6 +413,31 @@ input {
 .catalog:hover{
     border-color: #123456;
     cursor:pointer;
+}
+
+.catalog-main-4 {
+    width: 100%;
+    float:left;
+    margin-bottom:30px;
+}
+
+.catalog-main-4 li {
+    list-style: none;
+    width: 33.3%;
+    float: left;
+
+}
+.catalog-main-4 li {
+    list-style: none;
+    width: 25%;
+    float: left;
+}
+.catalog-main-4 li div {
+    margin:10px;
+}
+.catalog-main-4 li img {
+    width:225px;
+    max-height: 300px;
 }
 
 /********************************************************************

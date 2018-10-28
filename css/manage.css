@@ -273,12 +273,21 @@ body {
     float:left;
     margin-bottom:40px;
 }
+
+.catalog-main-4 {
+    width: 100%;
+    float:left;
+    margin-bottom:40px;
+}
 .catalog-action {
     margin-left: 20%;
     width: 80%;
     float:left;
     margin-bottom:40px;
     
+}
+.catalog-action-4{
+    margin-left:0;
 }
 .half-container {
     margin: 0 10px;
@@ -316,9 +325,17 @@ button.outstanding {
     float: left;
     
 }
+.catalog-main-4 li {
+    list-style: none;
+    width: 25%;
+    float: left;
+    
+}
+.catalog-main-4 li div,
 .catalog-main li div {
     margin:10px;
 }
+.catalog-main-4 li img,
 .catalog-main li img {
     width:225px;
     max-height: 300px;
@@ -326,9 +343,10 @@ button.outstanding {
 .catalog {
     border: solid 1px #eee;
     text-align: center;
+
     padding-top:10px;
     transition: border-color 0.15s ease-in-out;
-    height: 341px;
+    /* height: 341px; */
 }
 .catalog span {
     /* display:block; */
